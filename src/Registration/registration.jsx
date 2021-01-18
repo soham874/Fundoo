@@ -8,7 +8,14 @@ export default class registrationForm extends React.Component {
 
             <div class="formback">
                 <form class="left_container">
-
+                    <div class="independet_text">
+                        <b><span style={{color: "#4285F4"}}>F</span>
+                        <span style={{color: "#DB4437"}}>u</span>
+                        <span style={{color: "#F4B400"}}>n</span>
+                        <span style={{color: "#4285F4"}}>d</span>
+                        <span style={{color: "#0F9D58"}}>o</span>
+                        <span style={{color: "#DB4437"}}>o</span></b>
+                    </div>
                     <div class="independet_text">Create Your Fundoo account</div>
 
                     <div class="name_field_containers">

@@ -3,6 +3,15 @@
     font-family: 'Google Sans', 'Noto Sans Myanmar UI', arial, sans-serif;
 }
 
+.formback {
+    border: 1px solid grey;
+    margin: auto;
+    width: 50%;
+    margin-top: 100px;
+    padding: 30px;
+    border-radius: 10px;
+}
+
 .independet_text {
     padding: 15px 0 0 15px;
     font-size: 30px;
@@ -17,8 +26,7 @@
 }
 
 .left_container {
-    padding-left: 25%;
-    width: 30%;
+    width: 55%;
 }
 
 #userName {
