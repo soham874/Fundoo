@@ -1,5 +1,6 @@
 import React from 'react'
 import { TextInput } from './inputFields'
+import logo from '../Assets/account.svg'
 
 // Text input component
 export default class registrationForm extends React.Component {
@@ -16,7 +17,7 @@ export default class registrationForm extends React.Component {
                         <span style={{color: "#0F9D58"}}>o</span>
                         <span style={{color: "#DB4437"}}>o</span></b>
                     </div>
-                    <div class="independet_text">Create Your Fundoo account</div>
+                    <div class="independet_text">Create your Fundoo Account</div>
 
                     <div class="name_field_containers">
                         <TextInput label="First Name" id="firstName" />
@@ -31,6 +32,11 @@ export default class registrationForm extends React.Component {
                     </div>
 
                 </form>
+            
+                <div class="right_container">
+                    <img src={logo} style={{height:256}}/>
+                    <div style={{width:'250px',opacity:0.6}}>One account. All of Fundoo working for you.</div>
+                </div>
             </div>
 
         )

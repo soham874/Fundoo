@@ -4,17 +4,19 @@
 }
 
 .formback {
-    border: 1px solid grey;
+    border: 1px solid rgb(212, 212, 212);
     margin: auto;
-    width: 50%;
     margin-top: 100px;
     padding: 30px;
+    width: 800px;
     border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .independet_text {
     padding: 15px 0 0 15px;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .name_field_containers,
@@ -26,7 +28,14 @@
 }
 
 .left_container {
-    width: 55%;
+    width: 40%;
+}
+
+.right_container {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 
 #userName {
