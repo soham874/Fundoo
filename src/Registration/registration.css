@@ -43,6 +43,7 @@
 }
 
 button {
+    margin-top: 25px;
     float: right;
     color: white;
     background-color: royalblue;
@@ -60,4 +61,40 @@ button:hover {
 
 *:focus {
     outline: 0 !important;
+}
+
+@media only screen and (max-width:800px) and (min-width:530px) {
+    .formback {
+        width: 450px;
+    }
+    .right_container {
+        display: none;
+    }
+    .left_container {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width:530px) {
+    .formback {
+        border: 0;
+        margin: none;
+        margin-top: 0;
+        padding: 0;
+        width: 100%;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .left_container {
+        padding: 0;
+        margin: auto;
+    }
+    .right_container {
+        display: none;
+    }
+    .name_field_containers,
+    .password_fields_container {
+        flex-direction: column;
+    }
 }
