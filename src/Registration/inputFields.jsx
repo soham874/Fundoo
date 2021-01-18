@@ -8,35 +8,28 @@ class TextInput extends React.Component {
         super(props)
         this.state = {
             id : this.props.id,
-            label : this.props.label
+            label : this.props.label,
+            helperText: this.props.helperText,
+            width: this.props.width,
+            type: this.props.type
         }
     }
     render() {
         return (
             <div className="formField">
                 <TextField 
+                    margin = "dense"
                     id = {this.state.id}
                     label = {this.state.label}
-                    type="text"
-                    variant="outlined"
+                    helperText = {this.state.helperText}
+                    width = {this.state.width}
+                    fullWidth
+                    type = {this.state.type}
+                    variant ="outlined"
                 />
             </div>
         )
     }
 }
 
-// Number input component
-class NumberInput extends React.Component {
-    render() {
-        return (
-            <div className="formField">
-                <TextField
-                    type="number"
-                    variant="outlined"
-                />
-            </div>
-        )
-    }
-}
-
-export { TextInput, NumberInput }
+export { TextInput }
