@@ -4,10 +4,19 @@ import './registration.css'
 
 // Text input component
 class TextInput extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            id : this.props.id,
+            label : this.props.label
+        }
+    }
     render() {
         return (
             <div className="formField">
-                <TextField
+                <TextField 
+                    id = {this.state.id}
+                    label = {this.state.label}
                     type="text"
                     variant="outlined"
                 />
@@ -21,13 +30,13 @@ class NumberInput extends React.Component {
     render() {
         return (
             <div className="formField">
-            <TextField
-                type="number"
-                variant="outlined"
-            />
-        </div>
+                <TextField
+                    type="number"
+                    variant="outlined"
+                />
+            </div>
         )
     }
 }
 
-export {TextInput,NumberInput}
+export { TextInput, NumberInput }
