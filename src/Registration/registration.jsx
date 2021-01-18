@@ -9,6 +9,7 @@ export default class registrationForm extends React.Component {
 
             <div class="formback">
                 <form class="left_container">
+
                     <div class="independet_text">
                         <b><span style={{color: "#4285F4"}}>F</span>
                         <span style={{color: "#DB4437"}}>u</span>
@@ -30,6 +31,7 @@ export default class registrationForm extends React.Component {
                         <TextInput label="Password" id="password" type="password" helperText="Use 8 or more charecters with a mix of letters, numbers and symbols" />
                         <TextInput label="Confirm" id="confirm" type="password" />
                     </div>
+                    <button>Next</button>
 
                 </form>
             
