@@ -62,6 +62,12 @@ button {
     border: none;
 }
 
+.password_text {
+    padding-left: 20px;
+    opacity: 0.7;
+    font-size: 12px;
+}
+
 button:hover {
     transition: 0.5s;
     transform: scale(1.04);
@@ -105,7 +111,7 @@ button:hover {
         justify-content: space-between;
     }
     .left_container {
-        padding: 0;
+        padding: 10px;
         margin: auto;
     }
     .right_container {
