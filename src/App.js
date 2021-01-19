@@ -1,6 +1,6 @@
 import './App.css';
 
-import RegistrationForm from './Registration/registration'
+import RegistrationForm from './Components/Registration/registration'
 
 function App() {
     return (
