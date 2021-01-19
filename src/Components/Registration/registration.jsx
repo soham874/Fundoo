@@ -1,8 +1,9 @@
 import React from 'react'
-import { TextInput } from './inputFields'
+import { TextInput } from '../inputFields'
 import logo from '../Assets/account.svg'
 
 export default class registrationForm extends React.Component {
+
     render() {
         return (
 
@@ -20,15 +21,15 @@ export default class registrationForm extends React.Component {
                     <div className="independet_text">Create your Fundoo Account</div>
 
                     <div className="name_field_containers">
-                        <TextInput label="First Name" id="firstName" />
-                        <TextInput label="Last Name" id="lastName" />
+                        <TextInput label="First Name" id="firstName" pattern="1"/>
+                        <TextInput label="Last Name" id="lastName" pattern="2"/>
                     </div>
 
-                    <TextInput label="Username" id="userName" helperText="You can use letters, number & periods" width="500px" />
+                    <TextInput label="Username" id="userName" helperText="You can use letters, number & periods" pattern="3"/>
 
                     <div className="password_fields_container">
-                        <TextInput label="Password" id="password" type="password" helperText="Use 8 or more charecters with a mix of letters, numbers and symbols" />
-                        <TextInput label="Confirm" id="confirm" type="password" helperText="Use 8 or more charecters with a mix of letters, numbers and symbols"/>
+                        <TextInput label="Password" id="password" type="password" helperText="Use 8 or more charecters with a mix of letters, numbers and symbols" pattern="4"/>
+                        <TextInput label="Confirm" id="confirm" type="password" helperText="Use 8 or more charecters with a mix of letters, numbers and symbols" pattern="4"/>
                     </div>
                     
                     <div className="options">
