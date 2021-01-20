@@ -1,5 +1,5 @@
 .formField {
-    padding: 5px;
+    padding: 10px;
     font-family: 'Google Sans', 'Noto Sans Myanmar UI', arial, sans-serif;
 }
 
@@ -111,7 +111,6 @@ button:hover {
         justify-content: space-between;
     }
     .left_container {
-        padding: 10px;
         margin: auto;
     }
     .right_container {

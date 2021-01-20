@@ -43,9 +43,10 @@ class TextInput extends React.Component {
             if (inputString.length === 0)
                 this.setState({ helperText: `${inputArray[this.state.pattern - 1]} cannot be empty`})
             else
-                this.setState({ helperText: `${inputArray[this.state.pattern - 1]} not matching`})
+                this.setState({ helperText: `${inputArray[this.state.pattern - 1]} is invalid`})
         }
-        this.props.parentCallback(intFlag)
+        if(this.props.parentCallback != null)
+            this.props.parentCallback(intFlag)
     }
 
     render() {

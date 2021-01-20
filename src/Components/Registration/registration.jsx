@@ -1,8 +1,9 @@
 import React from 'react'
 import { TextInput } from '../InputField/inputFields'
 import logo from '../../Assets/account.svg'
+import './registration.css'
 
-let flagArray = [ 0 , 0 , 0 , 0]
+let flagArray = [ 0 , 0 , 0 , 0 ]
 
 export default class registrationForm extends React.Component {
 
