@@ -4,7 +4,7 @@ import './login.css'
 
 let flagArray = [0, 0, 0, 0]
 
-export default class registrationForm extends React.Component {
+export default class loginForm extends React.Component {
 
     handleCallback = (childData) => {
         let patternNo = Math.floor(childData / 10)
