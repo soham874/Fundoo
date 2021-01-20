@@ -10,6 +10,8 @@ const patternPassword = RegExp('(?=.*[A-Z])(?=.*[0-9])(?=[^.,:;!@#$%^&*_+=]*[.,:
 const regexArray = [patternFirstName, patternLastName, patternLastName, patternPassword]
 const inputArray = ["First name", "Last name", "Username", "Password"]
 
+let intFlag
+
 // Text input component
 class TextInput extends React.Component {
     constructor(props) {
@@ -24,7 +26,7 @@ class TextInput extends React.Component {
             error: false,
 
             //pattern number for which verification is needed
-            pattern: this.props.pattern
+            pattern: this.props.pattern,
         }
     }
 
@@ -32,12 +34,18 @@ class TextInput extends React.Component {
         let inputString = e.target.value
         let validFlag = regexArray[this.state.pattern - 1].test(inputString)
 
-        this.setState({ helperText:  " ", error: false })
-        if (!validFlag)
+        intFlag = this.props.pattern * 10 + 1
+
+        this.setState({ helperText: " ", error: false })
+        if (!validFlag){
+            intFlag = this.props.pattern * 10
+            this.setState({error: true })
             if (inputString.length === 0)
-                this.setState({ helperText: `${inputArray[this.state.pattern - 1]} cannot be empty`, error: true })
+                this.setState({ helperText: `${inputArray[this.state.pattern - 1]} cannot be empty`})
             else
-                this.setState({ helperText: `${inputArray[this.state.pattern - 1]} not matching`, error: true })
+                this.setState({ helperText: `${inputArray[this.state.pattern - 1]} not matching`})
+        }
+        this.props.parentCallback(intFlag)
     }
 
     render() {
