@@ -23,9 +23,7 @@ export default class loginForm extends React.Component {
 
     render() {
         return (
-
             <form className="loginFormback">
-
                     <div className="independet_text" style={{textAlign:'center'}}>
                         <b><span style={{ color: "#4285F4" }}>F</span>
                             <span style={{ color: "#DB4437" }}>u</span>
@@ -36,7 +34,6 @@ export default class loginForm extends React.Component {
                             <p>Sign In your Fundoo account</p>
                     </div>
                     
-
                     <TextInput label="Username" pattern ="3"/>
 
                     <TextInput label="Password" type="password" pattern ="4"/>
@@ -44,8 +41,7 @@ export default class loginForm extends React.Component {
                     <div className="options">
                         <span><a href="http://localhost:3000/" className="link">Create a new account</a></span>
                         <span><button type="submit" onClick={this.checkInput}>Next</button></span>
-                    </div>
-                    
+                    </div>                    
             </form>
 
         )
