@@ -3,23 +3,31 @@ import { TextInput } from '../InputField/inputFields'
 import logo from '../../Assets/account.svg'
 import './registration.css'
 
-let flagArray = [ 0 , 0 , 0 , 0 ]
+let flagArray = [0, 0, 0, 0]            //0 for error, 1 for correct
+let inputValues = ["", "", "", ""]      //corresponding field values
 
 export default class registrationForm extends React.Component {
 
-    handleCallback = (childData) => {
-        let patternNo = Math.floor(childData / 10)
-        let flagInfo = childData % 10
+    //receives flag status and field value and updates arrays accordingly
+    handleCallback = (errorFlag, inputString) => {
+        let patternNo = Math.floor(errorFlag / 10)
+        let flagInfo = errorFlag % 10
         flagArray[patternNo - 1] = flagInfo
+        inputValues[patternNo - 1] = inputString
     }
 
+    //analyses flag array on form submission
     checkInput = () => {
         let mainFlag = flagArray.findIndex(flag => flagArray[flag] === 0)
 
-        if(mainFlag === -1)
-            alert("All information is acceptable")
-        else
+        if (mainFlag === -1) {
+            //to do if all patterns match
+            alert("All information is acceptable. They are " + inputValues)
+        } else {
+            //to do if there is error in input
             alert("Please try again")
+        }
+
     }
 
     render() {
@@ -39,27 +47,27 @@ export default class registrationForm extends React.Component {
                     <div className="independet_text">Create your Fundoo Account</div>
 
                     <div className="name_field_containers">
-                        <TextInput label="First Name" id="firstName"  pattern="1" parentCallback = {this.handleCallback}/>
-                        <TextInput label="Last Name" id="lastName"  pattern="2" parentCallback = {this.handleCallback}/>
+                        <TextInput label="First Name" id="firstName" pattern="1" parentCallback={this.handleCallback} />
+                        <TextInput label="Last Name" id="lastName" pattern="2" parentCallback={this.handleCallback} />
                     </div>
 
-                    <TextInput label="Username" id="userName" pattern="3" parentCallback = {this.handleCallback}/>
+                    <TextInput label="Username" id="userName" pattern="3" parentCallback={this.handleCallback} />
                     <div className="password_text">You can use letters, number & periods</div>
 
                     <div className="password_fields_container">
-                        <TextInput label="Password" id="password" type="password" pattern="4" parentCallback = {this.handleCallback}/>
-                        <TextInput label="Confirm" id="confirm" type="password" pattern="4" parentCallback = {this.handleCallback}/>
+                        <TextInput label="Password" id="password" type="password" pattern="4" parentCallback={this.handleCallback} />
+                        <TextInput label="Confirm" id="confirm" type="password" pattern="4" parentCallback={this.handleCallback} />
                     </div>
                     <div className="password_text">Use 8 or more charecters with a mix of letters, numbers and symbols</div>
-                    
+
                     <div className="options">
                         <span><a href="http://localhost:3000/" className="link">Sign in instead</a></span>
-                        <span><button type="submit" onClick={this.checkInput}>Next</button></span>
+                        <span><button onClick={this.checkInput}>Next</button></span>
                     </div>
                 </form>
 
                 <div className="right_container">
-                    <img src={logo} style={{ height: 256 }} alt="Signup logo"/>
+                    <img src={logo} style={{ height: 256 }} alt="Signup logo" />
                     <div style={{ width: '250px', opacity: 0.6 }}>One account. All of Fundoo working for you.</div>
                 </div>
             </div>

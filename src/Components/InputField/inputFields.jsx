@@ -17,12 +17,8 @@ class TextInput extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-
-            //field properties from parent
-            id: this.props.id,
-            label: this.props.label,
+            //dynamic field properties
             helperText: " ",
-            type: this.props.type,
             error: false,
 
             //pattern number for which verification is needed
@@ -30,6 +26,7 @@ class TextInput extends React.Component {
         }
     }
 
+    //returns verification flag status and field value to parent on change
     changeHandler = (e) => {
         let inputString = e.target.value
         let validFlag = regexArray[this.state.pattern - 1].test(inputString)
@@ -46,7 +43,7 @@ class TextInput extends React.Component {
                 this.setState({ helperText: `${inputArray[this.state.pattern - 1]} is invalid`})
         }
         if(this.props.parentCallback != null)
-            this.props.parentCallback(intFlag)
+            this.props.parentCallback(intFlag,e.target.value)
     }
 
     render() {
@@ -55,11 +52,11 @@ class TextInput extends React.Component {
                 <TextField
                     autoComplete="off"
                     margin="dense"
-                    id={this.state.id}
-                    label={this.state.label}
+                    id={this.props.id}
+                    label={this.props.label}
                     helperText={this.state.helperText}
                     fullWidth
-                    type={this.state.type}
+                    type={this.props.type}
                     onChange={this.changeHandler}
                     error={this.state.error}
                     variant="outlined"
