@@ -2,6 +2,7 @@ import React from 'react'
 import { TextInput } from '../InputField/inputFields'
 import logo from '../../Assets/account.svg'
 import './registration.css'
+import {Link} from 'react-router-dom'
 
 let flagArray = [0, 0, 0, 0]            //0 for error, 1 for correct
 let inputValues = ["", "", "", ""]      //corresponding field values
@@ -61,7 +62,7 @@ export default class registrationForm extends React.Component {
                     <div className="password_text">Use 8 or more charecters with a mix of letters, numbers and symbols</div>
 
                     <div className="options">
-                        <span><a href="http://localhost:3000/" className="link">Sign in instead</a></span>
+                        <Link to="/login" className="link">Sign in instead</Link>
                         <span><button onClick={this.checkInput}>Next</button></span>
                     </div>
                 </form>

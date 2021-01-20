@@ -1,6 +1,8 @@
 import React from 'react'
 import { TextInput } from '../InputField/inputFields'
 import './login.css'
+import '../Registration/registration.css'
+import {Link} from 'react-router-dom'
 
 let flagArray = [0, 0, 0, 0]
 
@@ -39,7 +41,7 @@ export default class loginForm extends React.Component {
                     <TextInput label="Password" type="password" pattern ="4"/>
 
                     <div className="options">
-                        <span><a href="http://localhost:3000/" className="link">Create a new account</a></span>
+                        <Link to="/registration" className="link"><div>Create a new account</div></Link>
                         <span><button type="submit" onClick={this.checkInput}>Next</button></span>
                     </div>                    
             </form>
