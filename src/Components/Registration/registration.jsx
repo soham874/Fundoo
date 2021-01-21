@@ -67,7 +67,7 @@ export default class registrationForm extends React.Component {
         let eqFlag = this.passwordCheck()
 
         if (inputValues.length === inputArray.length && eqFlag === 0){
-            alert("chesk suceeded, do next task")
+            alert("check suceeded with information "+ inputValues + ", do next task")
         }
     }
 
