@@ -28,20 +28,30 @@ export default class registrationForm extends React.Component {
         }
     }
 
-    //receives flag status and field value and updates arrays accordingly
+    //receives field value from child
     handleCallback = (inputString) => {
         return inputString
     }
 
-    // handleChange = (e) => {
-    //     this.setState({[e.target.name] : e.target.value})
-    // }
+    //makes sure password matches confirm
+    passwordCheck = () => {
+        let password = this.state.password.current.returnValue()
+        let confirm = this.state.confirm.current.returnValue()
 
-    //analyses flag array on form submission
+        if (password !== confirm){
+            this.state.confirm.current.setCustomError("Passwords donot match")
+            return 1
+        }
+
+        return 0
+    }
+
+    //analyses input data on form submission
     checkInput = (e) => {
         inputValues = []
         e.preventDefault();
 
+        //input validation check
         for (let i = 0; i < inputArray.length; i++) {
             let input = this.state[inputRefs[i]].current.returnValue()
             if (!regexArray[i].test(input))
@@ -53,7 +63,10 @@ export default class registrationForm extends React.Component {
                 inputValues.push(input)
         }
 
-        if (inputValues.length === inputArray.length){
+        //password confirmation check
+        let eqFlag = this.passwordCheck()
+
+        if (inputValues.length === inputArray.length && eqFlag === 0){
             alert("chesk suceeded, do next task")
         }
     }
