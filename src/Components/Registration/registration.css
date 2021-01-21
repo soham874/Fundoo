@@ -1,5 +1,5 @@
 .formField {
-    padding: 10px;
+    padding-left: 10px;
     font-family: 'Google Sans', 'Noto Sans Myanmar UI', arial, sans-serif;
 }
 
@@ -119,5 +119,8 @@ button:hover {
     .name_field_containers,
     .password_fields_container {
         flex-direction: column;
+    }
+    .formField {
+        padding-right: 10px;
     }
 }

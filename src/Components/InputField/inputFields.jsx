@@ -20,6 +20,7 @@ class TextInput extends React.Component {
             //dynamic field properties
             helperText: " ",
             error: false,
+            type: "text",
 
             //pattern number for which verification is needed
             pattern: this.props.pattern,
@@ -46,6 +47,20 @@ class TextInput extends React.Component {
             this.props.parentCallback(intFlag,e.target.value)
     }
 
+    setFieldError = (fieldname) => {
+        this.setState({ helperText: `${fieldname} is invalid` , error: true })
+    }
+
+    setFieldEmpty = (fieldname) => {
+        this.setState({ helperText: `${fieldname} cannot be empty` , error: true })
+    }
+
+    togglePassword = (flag) => {
+        this.setState({type : "text"})
+        if(flag === 1)
+            this.setState({type : "password"})
+    }
+
     render() {
         return (
             <div className="formField">
@@ -56,8 +71,7 @@ class TextInput extends React.Component {
                     label={this.props.label}
                     helperText={this.state.helperText}
                     fullWidth
-                    type={this.props.type}
-                    onChange={this.changeHandler}
+                    type={this.state.type}
                     error={this.state.error}
                     variant="outlined"
                 />
