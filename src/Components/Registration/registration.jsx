@@ -5,23 +5,32 @@ import './registration.css'
 import {Link} from 'react-router-dom'
 import { Checkbox } from '@material-ui/core'
 
-let flagArray = [0, 0, 0, 0]            //0 for error, 1 for correct
-let inputValues = ["", "", "", ""]      //corresponding field values
+
+const patternFirstName = RegExp('^[A-Z][a-z]{2,}$')         //1
+const patternLastName = RegExp('^[A-Z][a-z]{2,}$')          //2
+const patternPassword = RegExp('(?=.*[A-Z])(?=.*[0-9])(?=[^.,:;!@#$%^&*_+=]*[.,:;!@#$%^&*_+=][^.,:;!@#$%^&*_+=]*$).{8,}$')
+
+const regexArray = [patternFirstName, patternLastName, patternLastName, patternPassword]
+const inputArray = ["First name", "Last name", "Username", "Password"]
+const inputRefs = ["firstName","lastName","userName","password"]
+
+let inputValues     //corresponding field values
 
 export default class registrationForm extends React.Component {
-    // constructor(props){
-    //     super(props)
-    //     this.state={
-    //         firstName : ''
-    //     }
-    // }
+    constructor(props){
+        super(props)
+        this.state={
+            firstName : React.createRef(),
+            lastName : React.createRef(),
+            userName : React.createRef(),
+            password : React.createRef(),
+            confirm : React.createRef(),
+        }
+    }
 
     //receives flag status and field value and updates arrays accordingly
-    handleCallback = (errorFlag, inputString) => {
-        let patternNo = Math.floor(errorFlag / 10)
-        let flagInfo = errorFlag % 10
-        flagArray[patternNo - 1] = flagInfo
-        inputValues[patternNo - 1] = inputString
+    handleCallback = (inputString) => {       
+        return inputString
     }
 
     // handleChange = (e) => {
@@ -29,16 +38,16 @@ export default class registrationForm extends React.Component {
     // }
 
     //analyses flag array on form submission
-    checkInput = () => {
-        let mainFlag = flagArray.findIndex(flag => flagArray[flag] === 0)
+    checkInput = (e) => {
+        inputValues = []
+        e.preventDefault();
 
-        if (mainFlag === -1) {
-            //to do if all patterns match
-            
-        } else {
-            //to do if there is error in input
-            TextInput.changeHandler()
-        }
+        let input = this.state.firstName.current.returnValue()
+        if(!regexArray[1 - 1].test(input))
+            if (input.length === 0)
+                this.state.firstName.current.setFieldEmpty("First Name")
+            else
+                this.state.firstName.current.setFieldError("First Name")
 
     }
 
@@ -59,16 +68,16 @@ export default class registrationForm extends React.Component {
                     <div className="independet_text">Create your Fundoo Account</div>
 
                     <div className="name_field_containers">
-                        <TextInput label="First Name" id="firstName" state={this.state} pattern="1" parentCallback={this.handleCallback} />
-                        <TextInput label="Last Name" id="lastName" pattern="2" parentCallback={this.handleCallback} />
+                        <TextInput label="First Name" ref={this.state.firstName}  parentCallback={this.handleCallback} />
+                        <TextInput label="Last Name" ref={this.state.lastName} parentCallback={this.handleCallback} />
                     </div>
 
-                    <TextInput label="Username" id="userName" pattern="3" parentCallback={this.handleCallback} />
+                    <TextInput label="Username" ref={this.state.userName} parentCallback={this.handleCallback} />
                     <div className="password_text">You can use letters, number & periods</div>
 
                     <div className="password_fields_container">
-                        <TextInput label="Password" id="password" type="password" pattern="4" parentCallback={this.handleCallback} />
-                        <TextInput label="Confirm" id="confirm" type="password" pattern="4" parentCallback={this.handleCallback} />
+                        <TextInput label="Password" ref={this.state.password} parentCallback={this.handleCallback} />
+                        <TextInput label="Confirm" ref={this.state.confirm} parentCallback={this.handleCallback} />
                     </div>
                     <div className="password_text">Use 8 or more charecters with a mix of letters, numbers and symbols</div>
                     <div>

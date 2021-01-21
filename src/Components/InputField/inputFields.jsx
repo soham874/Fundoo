@@ -21,12 +21,14 @@ class TextInput extends React.Component {
             helperText: " ",
             error: false,
             type: "text",
+            value: '',
 
             //pattern number for which verification is needed
             pattern: this.props.pattern,
         }
     }
 
+//set for delete    
     //returns verification flag status and field value to parent on change
     changeHandler = (e) => {
         let inputString = e.target.value
@@ -47,20 +49,38 @@ class TextInput extends React.Component {
             this.props.parentCallback(intFlag,e.target.value)
     }
 
+// Upto here
+
+    //resets errors on text field
+    resetErrors = (e) => {
+        this.setState({ helperText: " ", error: false, value: e.target.value })
+    }
+
+    //returns field value to parent
+    returnValue = ( ) => {
+        return this.props.parentCallback(this.state.value)
+    }
+
+    //sets the field to an error
     setFieldError = (fieldname) => {
         this.setState({ helperText: `${fieldname} is invalid` , error: true })
     }
 
+    //sets the field to empty error
     setFieldEmpty = (fieldname) => {
         this.setState({ helperText: `${fieldname} cannot be empty` , error: true })
     }
 
+    //toggles password visibility based on flag. 1 for invisible
     togglePassword = (flag) => {
         this.setState({type : "text"})
         if(flag === 1)
             this.setState({type : "password"})
     }
 
+
+
+    //renders the textfield
     render() {
         return (
             <div className="formField">
@@ -71,6 +91,7 @@ class TextInput extends React.Component {
                     label={this.props.label}
                     helperText={this.state.helperText}
                     fullWidth
+                    onChange={this.resetErrors}
                     type={this.state.type}
                     error={this.state.error}
                     variant="outlined"
