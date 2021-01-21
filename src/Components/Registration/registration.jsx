@@ -2,7 +2,7 @@ import React from 'react'
 import { TextInput } from '../InputField/inputFields'
 import logo from '../../Assets/account.svg'
 import './registration.css'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Checkbox } from '@material-ui/core'
 
 
@@ -12,24 +12,24 @@ const patternPassword = RegExp('(?=.*[A-Z])(?=.*[0-9])(?=[^.,:;!@#$%^&*_+=]*[.,:
 
 const regexArray = [patternFirstName, patternLastName, patternLastName, patternPassword]
 const inputArray = ["First name", "Last name", "Username", "Password"]
-const inputRefs = ["firstName","lastName","userName","password"]
+const inputRefs = ["firstName", "lastName", "userName", "password"]
 
 let inputValues     //corresponding field values
 
 export default class registrationForm extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
-            firstName : React.createRef(),
-            lastName : React.createRef(),
-            userName : React.createRef(),
-            password : React.createRef(),
-            confirm : React.createRef(),
+        this.state = {
+            firstName: React.createRef(),
+            lastName: React.createRef(),
+            userName: React.createRef(),
+            password: React.createRef(),
+            confirm: React.createRef(),
         }
     }
 
     //receives flag status and field value and updates arrays accordingly
-    handleCallback = (inputString) => {       
+    handleCallback = (inputString) => {
         return inputString
     }
 
@@ -42,13 +42,20 @@ export default class registrationForm extends React.Component {
         inputValues = []
         e.preventDefault();
 
-        let input = this.state.firstName.current.returnValue()
-        if(!regexArray[1 - 1].test(input))
-            if (input.length === 0)
-                this.state.firstName.current.setFieldEmpty("First Name")
+        for (let i = 0; i < inputArray.length; i++) {
+            let input = this.state[inputRefs[i]].current.returnValue()
+            if (!regexArray[i].test(input))
+                if (input.length === 0)
+                    this.state[inputRefs[i]].current.setFieldEmpty(`${inputArray[i]}`)
+                else
+                    this.state[inputRefs[i]].current.setFieldError(`${inputArray[i]}`)
             else
-                this.state.firstName.current.setFieldError("First Name")
+                inputValues.push(input)
+        }
 
+        if (inputValues.length === inputArray.length){
+            alert("chesk suceeded, do next task")
+        }
     }
 
     render() {
@@ -68,7 +75,7 @@ export default class registrationForm extends React.Component {
                     <div className="independet_text">Create your Fundoo Account</div>
 
                     <div className="name_field_containers">
-                        <TextInput label="First Name" ref={this.state.firstName}  parentCallback={this.handleCallback} />
+                        <TextInput label="First Name" ref={this.state.firstName} parentCallback={this.handleCallback} />
                         <TextInput label="Last Name" ref={this.state.lastName} parentCallback={this.handleCallback} />
                     </div>
 
@@ -82,13 +89,13 @@ export default class registrationForm extends React.Component {
                     <div className="password_text">Use 8 or more charecters with a mix of letters, numbers and symbols</div>
                     <div>
                         <Checkbox></Checkbox>
-                        <span className="password_text" style={{padding:0}}>Show Password</span>
+                        <span className="password_text" style={{ padding: 0 }}>Show Password</span>
                     </div>
                     <div className="options">
                         <Link to="/login" className="link">Sign in instead</Link>
                         <span><button onClick={this.checkInput}>Next</button></span>
                     </div>
-        
+
                 </form>
 
                 <div className="right_container">
