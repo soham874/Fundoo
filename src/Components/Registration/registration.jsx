@@ -38,7 +38,7 @@ export default class registrationForm extends React.Component {
         let password = this.state.password.current.returnValue()
         let confirm = this.state.confirm.current.returnValue()
 
-        if (password !== confirm){
+        if (password !== confirm || confirm.length === 0 ){
             this.state.confirm.current.setCustomError("Passwords donot match")
             return 1
         }
@@ -71,6 +71,12 @@ export default class registrationForm extends React.Component {
         }
     }
 
+    //toggles visibility of password and confirm box
+    toggleVisibility = () => {
+        this.state.password.current.togglePassword()
+        this.state.confirm.current.togglePassword()
+    }
+
     render() {
         return (
 
@@ -96,12 +102,13 @@ export default class registrationForm extends React.Component {
                     <div className="password_text">You can use letters, number & periods</div>
 
                     <div className="password_fields_container">
-                        <TextInput label="Password" ref={this.state.password} parentCallback={this.handleCallback} />
-                        <TextInput label="Confirm" ref={this.state.confirm} parentCallback={this.handleCallback} />
+                        <TextInput label="Password" ref={this.state.password} parentCallback={this.handleCallback} type="password"/>
+                        <TextInput label="Confirm" ref={this.state.confirm} parentCallback={this.handleCallback} 
+                        type="password"/>
                     </div>
                     <div className="password_text">Use 8 or more charecters with a mix of letters, numbers and symbols</div>
                     <div>
-                        <Checkbox></Checkbox>
+                        <Checkbox onClick={this.toggleVisibility}></Checkbox>
                         <span className="password_text" style={{ padding: 0 }}>Show Password</span>
                     </div>
                     <div className="options">

@@ -10,7 +10,7 @@ class TextInput extends React.Component {
             //dynamic field properties
             helperText: " ",
             error: false,
-            type: "text",
+            type: this.props.type,
             value: '',
         }
     }
@@ -21,33 +21,32 @@ class TextInput extends React.Component {
     }
 
     //returns field value to parent
-    returnValue = ( ) => {
+    returnValue = () => {
         return this.props.parentCallback(this.state.value)
     }
 
     //sets the field to an error
     setFieldError = (fieldname) => {
-        this.setState({ helperText: `${fieldname} is invalid` , error: true })
+        this.setState({ helperText: `${fieldname} is invalid`, error: true })
     }
 
     //sets the field to a custom error
     setCustomError = (error) => {
-        this.setState({ helperText: `${error}` , error: true })
+        this.setState({ helperText: `${error}`, error: true })
     }
 
     //sets the field to empty error
     setFieldEmpty = (fieldname) => {
-        this.setState({ helperText: `${fieldname} cannot be empty` , error: true })
+        this.setState({ helperText: `${fieldname} cannot be empty`, error: true })
     }
 
     //toggles password visibility based on flag. 1 for invisible
-    togglePassword = (flag) => {
-        this.setState({type : "text"})
-        if(flag === 1)
-            this.setState({type : "password"})
+    togglePassword = () => {
+        if (this.state.type === "text")
+            this.setState({ type : "password" })
+        else
+            this.setState({ type : "text" })
     }
-
-
 
     //renders the textfield
     render() {
