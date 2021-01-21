@@ -23,7 +23,7 @@ export default class registrationForm extends React.Component {
 
         if (mainFlag === -1) {
             //to do if all patterns match
-            alert("All information is acceptable. They are " + inputValues)
+            <Link to="/login"/>
         } else {
             //to do if there is error in input
             alert("Please try again")

@@ -42,7 +42,7 @@ export default class loginForm extends React.Component {
 
                     <div className="options">
                         <Link to="/registration" className="link"><div>Create a new account</div></Link>
-                        <span><button type="submit" onClick={this.checkInput}>Next</button></span>
+                        <span><button type="submit" onClick={this.checkInput}>Login</button></span>
                     </div>                    
             </form>
 
