@@ -8,8 +8,8 @@ import UserServices from '../../services/userService'
 
 const userServices = new UserServices()
 
-const patternFirstName = RegExp('^[A-Z][a-z]{2,}$')         //1
-const patternLastName = RegExp('^[A-Z][a-z]{2,}$')          //2
+const patternFirstName = RegExp('^[A-Z][a-z]{2,}$')         
+const patternLastName = RegExp('^[A-Z][a-z]{2,}$')          
 const patternEmail = RegExp('^[a-z0-9]+([._+-][a-z0-9]+)*(@)[0-9a-zA-Z]+[.]{1}[a-z]{2,3}([.][a-z]{2})?$')
 const patternPassword = RegExp('(?=.*[A-Z])(?=.*[0-9])(?=[^.,:;!@#$%^&*_+=]*[.,:;!@#$%^&*_+=][^.,:;!@#$%^&*_+=]*$).{8,}$')
 
@@ -76,11 +76,11 @@ export default class registrationForm extends React.Component {
     //pushes the data object to server
     pushInfo = () => {
         let data = {
-            firstName : inputValues[0],
-            lastName : inputValues[1],
-            email : inputValues[2],
-            service : "advance",
-            password : inputValues[3]
+            "firstName" : inputValues[0],
+            "lastName" : inputValues[1],
+            "email" : inputValues[2],
+            "service" : "advance",
+            "password" : inputValues[3]
         }
 
         userServices.registration(data).then((response)=>{

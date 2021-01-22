@@ -4,6 +4,9 @@ import './login.css'
 import '../Registration/registration.css'
 import { Link } from 'react-router-dom'
 import { Checkbox } from '@material-ui/core'
+import UserServices from '../../services/userService'
+
+const userServices = new UserServices()
 
 export default class loginForm extends React.Component {
     constructor(props) {
@@ -34,10 +37,18 @@ export default class loginForm extends React.Component {
                 this.state.password.current.setFieldEmpty("Password")
             if (username.length === 0)
                 this.state.userName.current.setFieldEmpty("Username")
+        } else {
+            let data = {
+                "email": username,
+                "password": password
+            }
+            userServices.login(data).then((response) => { 
+                console.log(response) 
+            }).catch((error) => { 
+                this.state.password.current.setCustomError("Invald username/password")
+                console.log(error)
+            })
         }
-
-        else
-            alert(`Check successful : Password ${password}, Username ${username}`)
     }
 
     render() {
