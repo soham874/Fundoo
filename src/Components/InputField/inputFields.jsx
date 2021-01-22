@@ -31,6 +31,11 @@ class TextInput extends React.Component {
     }
 
     //sets the field to a custom error
+    setCustomMessage = (message) => {
+        this.setState({ helperText: `${message}` })
+    }
+
+    //sets the field to a custom error
     setCustomError = (error) => {
         this.setState({ helperText: `${error}`, error: true })
     }
@@ -43,9 +48,9 @@ class TextInput extends React.Component {
     //toggles password visibility based on flag. 1 for invisible
     togglePassword = () => {
         if (this.state.type === "text")
-            this.setState({ type : "password" })
+            this.setState({ type: "password" })
         else
-            this.setState({ type : "text" })
+            this.setState({ type: "text" })
     }
 
     //renders the textfield

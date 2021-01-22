@@ -2,7 +2,7 @@ import React from 'react'
 import { TextInput } from '../InputField/inputFields'
 import logo from '../../Assets/account.svg'
 import './registration.css'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { Checkbox } from '@material-ui/core'
 import UserServices from '../../services/userService'
 
@@ -70,7 +70,7 @@ export default class registrationForm extends React.Component {
         let eqFlag = this.passwordCheck()
 
         if (inputValues.length === inputArray.length && eqFlag === 0)
-            this.pushInfo()
+            return this.pushInfo()
     }
 
     //pushes the data object to server
@@ -85,8 +85,10 @@ export default class registrationForm extends React.Component {
 
         userServices.registration(data).then((response)=>{
             console.log(response)
+            return <Redirect to={"/login"}/>
         }).catch((error)=>{
             console.log(error);
+            this.state.userName.current.setCustomError("This email already exists")
         })
     }
 

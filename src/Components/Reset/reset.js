@@ -32,6 +32,7 @@ export default class loginForm extends React.Component {
 
             userServices.reset(data).then((response) => {
                 console.log(response)
+                this.state.userName.current.setCustomMessage("Reset password link sent successfully")
             }).catch((error) => {
                 this.state.userName.current.setCustomError("Email doesnot exist in database")
                 console.log(error)
