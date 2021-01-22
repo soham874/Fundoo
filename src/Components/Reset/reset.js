@@ -21,23 +21,19 @@ export default class loginForm extends React.Component {
 
     checkInput = (e) => {
         e.preventDefault();
-        let password = this.state.password.current.returnValue()
         let username = this.state.userName.current.returnValue()
 
-        if (password.length === 0 || username.length === 0) {
-            if (password.length === 0)
-                this.state.password.current.setFieldEmpty("Password")
-            if (username.length === 0)
-                this.state.userName.current.setFieldEmpty("Username")
-        } else {
+        if (username.length === 0)
+            this.state.userName.current.setFieldEmpty("Email")
+        else {
             let data = {
-                "email": username,
-                "password": password
+                "email": username
             }
-            userServices.login(data).then((response) => { 
-                console.log(response) 
-            }).catch((error) => { 
-                this.state.password.current.setCustomError("Invald username/password")
+
+            userServices.reset(data).then((response) => {
+                console.log(response)
+            }).catch((error) => {
+                this.state.userName.current.setCustomError("Email doesnot exist in database")
                 console.log(error)
             })
         }
