@@ -1,9 +1,8 @@
 import React from 'react'
 import { TextInput } from '../InputField/inputFields'
-import './login.css'
+import '../Login/login.css'
 import '../Registration/registration.css'
 import { Link } from 'react-router-dom'
-import { Checkbox } from '@material-ui/core'
 import UserServices from '../../services/userService'
 
 const userServices = new UserServices()
@@ -13,17 +12,11 @@ export default class loginForm extends React.Component {
         super(props)
         this.state = {
             userName: React.createRef(),
-            password: React.createRef(),
         }
     }
 
     handleCallback = (inputString) => {
         return inputString
-    }
-
-    //toggles visibility of password box
-    toggleVisibility = () => {
-        this.state.password.current.togglePassword()
     }
 
     checkInput = (e) => {
@@ -41,9 +34,9 @@ export default class loginForm extends React.Component {
                 "email": username,
                 "password": password
             }
-            userServices.login(data).then((response) => {
-                console.log(response)
-            }).catch((error) => {
+            userServices.login(data).then((response) => { 
+                console.log(response) 
+            }).catch((error) => { 
                 this.state.password.current.setCustomError("Invald username/password")
                 console.log(error)
             })
@@ -60,23 +53,14 @@ export default class loginForm extends React.Component {
                         <span style={{ color: "#4285F4" }}>d</span>
                         <span style={{ color: "#0F9D58" }}>o</span>
                         <span style={{ color: "#DB4437" }}>o</span></b>
-                    <p>Sign In your Fundoo account</p>
+                    <p>Reset your Fundoo account password</p>
                 </div>
 
                 <TextInput label="Email" ref={this.state.userName} parentCallback={this.handleCallback} />
 
-                <TextInput label="Password" type="password" ref={this.state.password} parentCallback={this.handleCallback} />
-
-                <div className="options" style={{marginTop:0}}><Link to="/reset" className="link"><div>Forgot Password?</div></Link></div>
-
-                <div>
-                    <Checkbox onClick={this.toggleVisibility}></Checkbox>
-                    <span className="password_text" style={{ padding: 0 }}>Show Password</span>
-                </div>
-
                 <div className="options">
-                    <Link to="/registration" className="link"><div>Create a new account</div></Link>
-                    <span><button onClick={this.checkInput}>Login</button></span>
+                    <Link to="/login" className="link"><div>Go back to login</div></Link>
+                    <span><button onClick={this.checkInput}>Send reset link</button></span>
                 </div>
             </form>
 
