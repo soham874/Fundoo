@@ -4,14 +4,17 @@ import logo from '../../Assets/account.svg'
 import './registration.css'
 import { Link } from 'react-router-dom'
 import { Checkbox } from '@material-ui/core'
+import UserServices from '../../services/userService'
 
+const userServices = new UserServices()
 
 const patternFirstName = RegExp('^[A-Z][a-z]{2,}$')         //1
 const patternLastName = RegExp('^[A-Z][a-z]{2,}$')          //2
+const patternEmail = RegExp('^[a-z0-9]+([._+-][a-z0-9]+)*(@)[0-9a-zA-Z]+[.]{1}[a-z]{2,3}([.][a-z]{2})?$')
 const patternPassword = RegExp('(?=.*[A-Z])(?=.*[0-9])(?=[^.,:;!@#$%^&*_+=]*[.,:;!@#$%^&*_+=][^.,:;!@#$%^&*_+=]*$).{8,}$')
 
-const regexArray = [patternFirstName, patternLastName, patternLastName, patternPassword]
-const inputArray = ["First name", "Last name", "Username", "Password"]
+const regexArray = [patternFirstName, patternLastName, patternEmail, patternPassword]
+const inputArray = ["First name", "Last name", "Email", "Password"]
 const inputRefs = ["firstName", "lastName", "userName", "password"]
 
 let inputValues     //corresponding field values
@@ -66,9 +69,25 @@ export default class registrationForm extends React.Component {
         //password confirmation check
         let eqFlag = this.passwordCheck()
 
-        if (inputValues.length === inputArray.length && eqFlag === 0){
-            alert("check suceeded with information "+ inputValues + ", do next task")
+        if (inputValues.length === inputArray.length && eqFlag === 0)
+            this.pushInfo()
+    }
+
+    //pushes the data object to server
+    pushInfo = () => {
+        let data = {
+            firstName : inputValues[0],
+            lastName : inputValues[1],
+            email : inputValues[2],
+            service : "advance",
+            password : inputValues[3]
         }
+
+        userServices.registration(data).then((response)=>{
+            console.log(response)
+        }).catch((error)=>{
+            console.log(error);
+        })
     }
 
     //toggles visibility of password and confirm box
@@ -98,7 +117,7 @@ export default class registrationForm extends React.Component {
                         <TextInput label="Last Name" ref={this.state.lastName} parentCallback={this.handleCallback} />
                     </div>
 
-                    <TextInput label="Username" ref={this.state.userName} parentCallback={this.handleCallback} />
+                    <TextInput label="Email" ref={this.state.userName} parentCallback={this.handleCallback} />
                     <div className="password_text">You can use letters, number & periods</div>
 
                     <div className="password_fields_container">
