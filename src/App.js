@@ -2,7 +2,7 @@ import './App.css';
 
 import RegistrationForm from './Components/Registration/registration'
 import Login from './Components/Login/login'
-import Reset from './Components/Reset/reset'
+import Forgot from './Components/Forgot-password/forgot'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
                 <Route path="/" exact component={Login} />
                 <Route path="/registration" component={RegistrationForm} />
                 <Route path="/login" component={Login} />
-                <Route path="/reset" component={Reset} />
+                <Route path="/forgot-password" component={Forgot} />
             </Router>
         </div>
     );

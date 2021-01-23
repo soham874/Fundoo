@@ -2,9 +2,12 @@ import React from 'react'
 import { TextInput } from '../InputField/inputFields'
 import logo from '../../Assets/account.svg'
 import './registration.css'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Checkbox } from '@material-ui/core'
 import UserServices from '../../services/userService'
+
+// soham8744@gmail.com
+// abcdefgQ1!
 
 const userServices = new UserServices()
 
@@ -85,7 +88,8 @@ export default class registrationForm extends React.Component {
 
         userServices.registration(data).then((response)=>{
             console.log(response)
-            return <Redirect to={"/login"}/>
+            console.log(this.props.push)
+            this.props.history.push("/login")
         }).catch((error)=>{
             console.log(error);
             this.state.userName.current.setCustomError("This email already exists")

@@ -67,12 +67,12 @@ export default class loginForm extends React.Component {
 
                 <TextInput label="Password" type="password" ref={this.state.password} parentCallback={this.handleCallback} />
 
-                <div className="options" style={{marginTop:0}}><Link to="/reset" className="link"><div>Forgot Password?</div></Link></div>
-
                 <div>
                     <Checkbox onClick={this.toggleVisibility}></Checkbox>
                     <span className="password_text" style={{ padding: 0 }}>Show Password</span>
                 </div>
+
+                <div className="options" style={{marginTop:0}}><Link to="/forgot-password" className="link"><div>Forgot Password?</div></Link></div>
 
                 <div className="options">
                     <Link to="/registration" className="link"><div>Create a new account</div></Link>
