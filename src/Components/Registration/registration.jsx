@@ -1,5 +1,6 @@
 import React from 'react'
 import { TextInput } from '../InputField/inputFields'
+import SimpleSnackbar from '../Snackbar/snackbarMessages'
 import logo from '../../Assets/account.svg'
 import './registration.css'
 import { Link } from 'react-router-dom'
@@ -11,8 +12,8 @@ import UserServices from '../../services/userService'
 
 const userServices = new UserServices()
 
-const patternFirstName = RegExp('^[A-Z][a-z]{2,}$')         
-const patternLastName = RegExp('^[A-Z][a-z]{2,}$')          
+const patternFirstName = RegExp('^[A-Z][a-z]{2,}$')
+const patternLastName = RegExp('^[A-Z][a-z]{2,}$')
 const patternEmail = RegExp('^[a-z0-9]+([._+-][a-z0-9]+)*(@)[0-9a-zA-Z]+[.]{1}[a-z]{2,3}([.][a-z]{2})?$')
 const patternPassword = RegExp('(?=.*[A-Z])(?=.*[0-9])(?=[^.,:;!@#$%^&*_+=]*[.,:;!@#$%^&*_+=][^.,:;!@#$%^&*_+=]*$).{8,}$')
 
@@ -44,7 +45,7 @@ export default class registrationForm extends React.Component {
         let password = this.state.password.current.returnValue()
         let confirm = this.state.confirm.current.returnValue()
 
-        if (password !== confirm || confirm.length === 0 ){
+        if (password !== confirm || confirm.length === 0) {
             this.state.confirm.current.setCustomError("Passwords donot match")
             return 1
         }
@@ -79,20 +80,23 @@ export default class registrationForm extends React.Component {
     //pushes the data object to server
     pushInfo = () => {
         let data = {
-            "firstName" : inputValues[0],
-            "lastName" : inputValues[1],
-            "email" : inputValues[2],
-            "service" : "advance",
-            "password" : inputValues[3]
+            "firstName": inputValues[0],
+            "lastName": inputValues[1],
+            "email": inputValues[2],
+            "service": "advance",
+            "password": inputValues[3]
         }
 
-        userServices.registration(data).then((response)=>{
+        userServices.registration(data).then((response) => {
             console.log(response)
-            console.log(this.props.push)
-            this.props.history.push("/login")
-        }).catch((error)=>{
+            SimpleSnackbar.handleClick("Email registered successfully")
+            setTimeout(() => {
+                this.props.history.push("/login")
+            }, 4000)
+        }).catch((error) => {
             console.log(error);
             this.state.userName.current.setCustomError("This email already exists")
+            SimpleSnackbar.handleClick("This email already exists")
         })
     }
 
@@ -127,9 +131,9 @@ export default class registrationForm extends React.Component {
                     <div className="password_text">You can use letters, number & periods</div>
 
                     <div className="password_fields_container">
-                        <TextInput label="Password" ref={this.state.password} parentCallback={this.handleCallback} type="password"/>
-                        <TextInput label="Confirm" ref={this.state.confirm} parentCallback={this.handleCallback} 
-                        type="password"/>
+                        <TextInput label="Password" ref={this.state.password} parentCallback={this.handleCallback} type="password" />
+                        <TextInput label="Confirm" ref={this.state.confirm} parentCallback={this.handleCallback}
+                            type="password" />
                     </div>
                     <div className="password_text">Use 8 or more charecters with a mix of letters, numbers and symbols</div>
                     <div>
@@ -147,6 +151,8 @@ export default class registrationForm extends React.Component {
                     <img src={logo} style={{ height: 256 }} alt="Signup logo" />
                     <div style={{ width: '250px', opacity: 0.6 }}>One account. All of Fundoo working for you.</div>
                 </div>
+
+                <SimpleSnackbar />
             </div>
 
         )
