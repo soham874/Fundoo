@@ -20,6 +20,11 @@ class TextInput extends React.Component {
         this.setState({ helperText: " ", error: false, value: e.target.value })
     }
 
+    //resets field value
+    resetField = ( ) => {
+        this.setState({ helperText: " ", error: false, value: "" })
+    }
+
     //returns field value to parent
     returnValue = () => {
         return this.props.parentCallback(this.state.value)
@@ -61,6 +66,7 @@ class TextInput extends React.Component {
                     autoComplete="off"
                     margin="dense"
                     id={this.props.id}
+                    value={this.state.value}
                     label={this.props.label}
                     helperText={this.state.helperText}
                     fullWidth

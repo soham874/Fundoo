@@ -4,6 +4,7 @@ import '../Login/login.css'
 import '../Registration/registration.css'
 import { Link } from 'react-router-dom'
 import UserServices from '../../services/userService'
+import SimpleSnackbar from '../Snackbar/snackbarMessages'
 
 const userServices = new UserServices()
 
@@ -32,7 +33,11 @@ export default class loginForm extends React.Component {
 
             userServices.reset(data).then((response) => {
                 console.log(response)
-                this.state.userName.current.setCustomMessage("Reset password link sent successfully")
+                this.state.userName.current.resetField()
+                SimpleSnackbar.handleClick("Reset link sent successfully")
+                setTimeout(() => {
+                    this.props.history.push("/login")
+                }, 4000)
             }).catch((error) => {
                 this.state.userName.current.setCustomError("Email doesnot exist in database")
                 console.log(error)
@@ -59,6 +64,7 @@ export default class loginForm extends React.Component {
                     <Link to="/login" className="link"><div>Go back to login</div></Link>
                     <span><button onClick={this.checkInput}>Send reset link</button></span>
                 </div>
+                <SimpleSnackbar/>
             </form>
 
         )
