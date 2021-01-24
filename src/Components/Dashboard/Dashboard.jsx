@@ -13,10 +13,14 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
-const drawerWidth = 300;
+import HighlightIcon from '@material-ui/icons/Highlight';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import CreateIcon from '@material-ui/icons/Create';
+import DeleteIcon from '@material-ui/icons/Delete';
+import ArchiveIcon from '@material-ui/icons/Archive';
+
+const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -81,7 +85,7 @@ export default function Dashboard() {
     const [open, setOpen] = React.useState(false);
 
     const handleDrawer = () => {
-        flag = (flag)?false:true
+        flag = (flag) ? false : true
         setOpen(flag)
     };
 
@@ -100,14 +104,12 @@ export default function Dashboard() {
                         aria-label="open drawer"
                         onClick={handleDrawer}
                         edge="start"
-                        className={clsx(classes.menuButton, {
-                            [classes.hide]: open,
-                        })}
+                        className={clsx(classes.menuButton)}
                     >
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Mini variant drawer
+                        Fundoo Notes
           </Typography>
                 </Toolbar>
             </AppBar>
@@ -125,13 +127,27 @@ export default function Dashboard() {
                 }}
             >
                 <Divider />
-                <List style={{marginTop:'70px'}}>
-                    {['Notes', 'Reminders', 'Edit Labels', 'Archive', 'Bin'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+                <List style={{ marginTop: '70px' }}>
+                    <ListItem button key='Notes'>
+                        <ListItemIcon><HighlightIcon/></ListItemIcon>
+                        <ListItemText primary='Notes' />
+                    </ListItem>
+                    <ListItem button key='Reminders'>
+                        <ListItemIcon><NotificationsIcon/></ListItemIcon>
+                        <ListItemText primary='Reminders' />
+                    </ListItem>
+                    <ListItem button key='Edit Labels'>
+                        <ListItemIcon><CreateIcon/></ListItemIcon>
+                        <ListItemText primary='Edit Labels' />
+                    </ListItem>
+                    <ListItem button key='Archive'>
+                        <ListItemIcon><ArchiveIcon/></ListItemIcon>
+                        <ListItemText primary='Archive' />
+                    </ListItem>
+                    <ListItem button key='Bin'>
+                        <ListItemIcon><DeleteIcon/></ListItemIcon>
+                        <ListItemText primary='Bin' />
+                    </ListItem>
                 </List>
             </Drawer>
             <main className={classes.content}>
