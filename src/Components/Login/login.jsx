@@ -1,7 +1,6 @@
 import React from 'react'
 import { TextInput } from '../InputField/inputFields'
-import './login.css'
-import '../Registration/registration.css'
+
 import { Link } from 'react-router-dom'
 import { Checkbox } from '@material-ui/core'
 import UserServices from '../../services/userService'
@@ -74,12 +73,13 @@ export default class loginForm extends React.Component {
                     <span className="password_text" style={{ padding: 0 }}>Show Password</span>
                 </div>
 
-                <div className="options" style={{marginTop:0}}><Link to="/forgot-password" className="link"><div>Forgot Password?</div></Link></div>
+                <div className="options" style={{ marginTop: 0 }}><Link to="/forgot-password" className="link">Forgot Password?</Link></div>
 
                 <div className="options">
                     <Link to="/registration" className="link"><div>Create a new account</div></Link>
                     <span><button onClick={this.checkInput}>Login</button></span>
                 </div>
+                <SimpleSnackbar/>
             </form>
 
         )

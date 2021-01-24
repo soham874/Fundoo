@@ -17,8 +17,8 @@
 @media only screen and (max-width: 600px) {
     .loginFormback {
         border: 0;
-        width: 100%;
-        margin: 0;
+        width: auto;
+        margin-top: 0;
         padding: 0 10px 0 10px;
         border-radius: 10px;
         display: flex;

@@ -1,5 +1,5 @@
 .formField {
-    padding-left: 10px;
+    padding: 0 10px;
     font-family: 'Google Sans', 'Noto Sans Myanmar UI', arial, sans-serif;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .independet_text {
-    padding: 15px 0 0 15px;
+    padding: 15px 15px 0 15px;
     font-size: 20px;
 }
 
