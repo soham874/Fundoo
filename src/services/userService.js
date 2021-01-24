@@ -16,8 +16,13 @@ export default class UserService {
         return axiosService.post(`${baseUrl}login`, data)
     }
 
-    //sends reset information to server
-    reset = (data) => {
+    //sends reset email to server
+    resetEmail = (data) => {
         return axiosService.post(`${baseUrl}reset`, data)
+    }
+
+    //sends reset password to server
+    resetPassword = (data, token) => {
+        return axiosService.post(`${baseUrl}reset-password?access_token=${token}`, data)
     }
 }

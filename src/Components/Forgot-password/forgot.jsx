@@ -31,7 +31,7 @@ export default class loginForm extends React.Component {
                 "email": username
             }
 
-            userServices.reset(data).then((response) => {
+            userServices.resetEmail(data).then((response) => {
                 console.log(response)
                 this.state.userName.current.resetField()
                 SimpleSnackbar.handleClick("Reset link sent successfully")
@@ -55,7 +55,7 @@ export default class loginForm extends React.Component {
                         <span style={{ color: "#4285F4" }}>d</span>
                         <span style={{ color: "#0F9D58" }}>o</span>
                         <span style={{ color: "#DB4437" }}>o</span></b>
-                    <p>Reset your Fundoo account password</p>
+                    <p>Use registered email to reset your Fundoo account password</p>
                 </div>
 
                 <TextInput label="Email" ref={this.state.userName} parentCallback={this.handleCallback} />
