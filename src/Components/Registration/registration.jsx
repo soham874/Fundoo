@@ -92,7 +92,7 @@ export default class registrationForm extends React.Component {
             SimpleSnackbar.handleClick("Email registered successfully")
             setTimeout(() => {
                 this.props.history.push("/login")
-            }, 4000)
+            }, 3000)
         }).catch((error) => {
             console.log(error);
             this.state.userName.current.setCustomError("This email already exists")

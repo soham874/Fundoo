@@ -24,7 +24,7 @@ export default function SimpleSnackbar(props) {
           vertical: 'bottom',
           horizontal: 'left',
         }}
-        autoHideDuration={3000}
+        autoHideDuration={2000}
         open={state.open}
         onClose={handleClose}
         message={state.message}

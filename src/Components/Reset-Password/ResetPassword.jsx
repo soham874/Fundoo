@@ -7,6 +7,8 @@ import SimpleSnackbar from '../Snackbar/snackbarMessages'
 
 const userServices = new UserServices()
 
+const patternPassword = RegExp('(?=.*[A-Z])(?=.*[0-9])(?=[^.,:;!@#$%^&*_+=]*[.,:;!@#$%^&*_+=][^.,:;!@#$%^&*_+=]*$).{8,}$')
+
 export default class resetForm extends React.Component {
     constructor(props) {
         super(props)
@@ -23,16 +25,26 @@ export default class resetForm extends React.Component {
     //toggles visibility of password box
     toggleVisibility = () => {
         this.state.password.current.togglePassword()
+        this.state.confirm.current.togglePassword()
     }
 
+    //verifies password validity and resets
     checkInput = (e) => {
         e.preventDefault();
         let token = this.props.match.params.id
         let password = this.state.password.current.returnValue()
-        // let confirm = this.state.confirm.current.returnValue()
+        let confirm = this.state.confirm.current.returnValue()
 
-        // let data = new FormData()
-        // data.set('newPassword',password)
+        if(!patternPassword.test(password))
+            this.state.password.current.setCustomError("Password is invalid")
+
+        if(password.length === 0)
+            this.state.password.current.setCustomError("Password cannot be empty")
+
+        if (password !== confirm || confirm.length === 0 || !patternPassword.test(password)) {
+            this.state.confirm.current.setCustomError("Passwords donot match")
+            return 
+        }
 
         let data={
             "newPassword":password
@@ -40,11 +52,12 @@ export default class resetForm extends React.Component {
 
         userServices.resetPassword(data,token).then((response) => {
             console.log(response)
-            SimpleSnackbar.handleClick("Reset link sent successfully")
-            // setTimeout(() => {
-            //     this.props.history.push("/login")
-            // }, 4000)
+            SimpleSnackbar.handleClick("Password has been reset successfully")
+            setTimeout(() => {
+                this.props.history.push("/login")
+            }, 3000)
         }).catch((error) => {
+            SimpleSnackbar.handleClick("Password reset failed")
             console.log(error)
         })
     }
@@ -62,7 +75,7 @@ export default class resetForm extends React.Component {
                     <p>Reset your Fundoo account password</p>
                 </div>
 
-                <TextInput label="New password" ref={this.state.password} parentCallback={this.handleCallback} />
+                <TextInput label="New password" type="password" ref={this.state.password} parentCallback={this.handleCallback} />
 
                 <TextInput label="Confirm" type="password" ref={this.state.confirm} parentCallback={this.handleCallback} />
 

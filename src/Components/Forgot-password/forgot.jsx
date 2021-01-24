@@ -37,7 +37,7 @@ export default class loginForm extends React.Component {
                 SimpleSnackbar.handleClick("Reset link sent successfully")
                 setTimeout(() => {
                     this.props.history.push("/login")
-                }, 4000)
+                }, 3000)
             }).catch((error) => {
                 this.state.userName.current.setCustomError("Email doesnot exist in database")
                 console.log(error)
