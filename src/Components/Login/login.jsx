@@ -1,6 +1,5 @@
 import React from 'react'
 import { TextInput } from '../InputField/inputFields'
-
 import { Link } from 'react-router-dom'
 import { Checkbox } from '@material-ui/core'
 import UserServices from '../../services/userService'
@@ -44,6 +43,9 @@ export default class loginForm extends React.Component {
             userServices.login(data).then((response) => {
                 console.log(response)
                 SimpleSnackbar.handleClick("Login successful")
+                setTimeout(() => {
+                    this.props.history.push("/dashboard")
+                }, 3000)
             }).catch((error) => {
                 this.state.password.current.setCustomError("Invald username/password")
                 console.log(error)

@@ -82,7 +82,7 @@ export default function ResetForm(props) {
             </div>
 
             <div className="options">
-                <span><button onClick={checkInput}>Login</button></span>
+                <span><button onClick={checkInput}>Resest Password</button></span>
             </div>
             <SimpleSnackbar />
         </form>
