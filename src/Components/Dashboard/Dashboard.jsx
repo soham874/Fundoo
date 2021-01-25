@@ -32,6 +32,10 @@ const useStyles = makeStyles((theme) => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
+        backgroundColor: 'white',
+        color: 'black',
+        boxShadow: 'none',
+        borderBottom: '1px solid rgba(0, 0, 0, 0.12)'
     },
     appBarShift: {
         marginLeft: drawerWidth,
@@ -52,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
         }),
+        borderRight: 0
     },
     drawerClose: {
         transition: theme.transitions.create('width', {
@@ -62,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(7) + 1,
         [theme.breakpoints.up('sm')]: {
             width: theme.spacing(9) + 1,
-        },
+        }, borderRight: 0
     },
     toolbar: {
         display: 'flex',
@@ -78,15 +83,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-let flag = false
-
 export default function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
 
     const handleDrawer = () => {
-        flag = (flag) ? false : true
-        setOpen(flag)
+        setOpen(!open)
     };
 
     return (
