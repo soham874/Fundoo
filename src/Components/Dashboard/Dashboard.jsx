@@ -20,9 +20,18 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ArchiveIcon from '@material-ui/icons/Archive';
-import DashLogo from '../../Assets/LogoDashboard.png'
+import DashLogo from '../../Assets/LogoDashboard.png';
 
+import ReplayIcon from '@material-ui/icons/Replay'
+import ViewStreamOutlinedIcon from '@material-ui/icons/ViewStreamOutlined';
+import SettingsIcon from '@material-ui/icons/Settings';
+import DialpadIcon from '@material-ui/icons/Dialpad';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
+import Badge from '@material-ui/core/Badge';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Menu from '@material-ui/core/Menu';
+import MailIcon from '@material-ui/icons/Mail';
 
 const drawerWidth = 250;
 
@@ -46,18 +55,17 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
+        marginLeft: '20px',
         paddingLeft: '10px',
         paddingTop: '5px',
         paddingBottom: '5px',
         borderRadius: '10px',
         backgroundColor: '#f1f3f4',
         marginRight: theme.spacing(2),
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(3),
-            width: 'auto',
-        },
+        width: '50%',
+        "&:click": {
+            backgroundColor: 'white',
+        }
     },
     searchIcon: {
         padding: '5px',
@@ -71,29 +79,29 @@ const useStyles = makeStyles((theme) => ({
 
     inputRoot: {
         color: 'inherit',
-      },
-      inputInput: {
+    },
+    inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('md')]: {
-          width: '20ch',
+            width: '20ch',
         },
-      },
-      sectionDesktop: {
+    },
+    sectionDesktop: {
         display: 'none',
         [theme.breakpoints.up('md')]: {
-          display: 'flex',
+            display: 'flex',
         },
-      },
-      sectionMobile: {
+    },
+    sectionMobile: {
         display: 'flex',
         [theme.breakpoints.up('md')]: {
-          display: 'none',
+            display: 'none',
         },
-      },
+    },
     menuButton: {
         marginRight: 36,
     },
@@ -138,16 +146,25 @@ const useStyles = makeStyles((theme) => ({
         '&:focus': {
             backgroundColor: '#feefc3'
         }
+    },
+    barIcons: {
+        marginLeft: '10px',
+        marginRight: '10px'
     }
 }));
 
 export default function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const menuId = 'primary-search-account-menu';
     const handleDrawer = () => {
         setOpen(!open)
     };
+    const handleProfileMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+      };
+
 
     return (
         <div className={classes.root}>
@@ -166,7 +183,7 @@ export default function Dashboard() {
                         edge="start"
                         className={clsx(classes.menuButton)}
                     >
-                    <MenuIcon />
+                        <MenuIcon />
                     </IconButton>
                     <img src={DashLogo} alt="Fundoo notes" />
                     <Typography variant="h6" noWrap>
@@ -177,13 +194,57 @@ export default function Dashboard() {
                             <SearchIcon />
                         </div>
                         <InputBase className={classes.input}
-                            placeholder="Search…"
+                            placeholder="Search"
                             classes={{
                                 root: classes.inputRoot,
                                 input: classes.inputInput,
                             }}
-                        inputProps={{ 'aria-label': 'search' }}/>
+                            inputProps={{ 'aria-label': 'search' }} />
                     </div>
+                    {/* <div style={{ marginLeft: '10%' }}>
+                        <ReplayIcon className={classes.barIcons} />
+                        <ViewStreamOutlinedIcon className={classes.barIcons} />
+                        <SettingsIcon className={classes.barIcons} />
+                    </div>
+                    <div style={{ marginLeft: '20px'}}>
+                        <DialpadIcon className={classes.barIcons} />
+                        <AccountCircleIcon className={classes.barIcons} />
+                    </div> */}
+
+                    <div className={classes.sectionDesktop}>
+                        <IconButton>
+                            <Badge >
+                                <ReplayIcon/>
+                            </Badge>
+                        </IconButton>
+                        <IconButton>
+                            <Badge >
+                                <ViewStreamOutlinedIcon  />
+                            </Badge>
+                        </IconButton>
+                        <IconButton>
+                            <Badge >
+                                <SettingsIcon />
+                            </Badge>
+                        </IconButton>
+                        <IconButton>
+                            <Badge >
+                                <DialpadIcon />
+                            </Badge>
+                        </IconButton>
+                        <IconButton
+                            edge="end"
+                            aria-label="account of current user"
+                            aria-controls={menuId}
+                            aria-haspopup="true"
+                            onClick={handleProfileMenuOpen}
+                            color="inherit"
+                        >
+                            <AccountCircle />
+                        </IconButton>
+                    </div>
+
+
                 </Toolbar>
             </AppBar>
             <Drawer
