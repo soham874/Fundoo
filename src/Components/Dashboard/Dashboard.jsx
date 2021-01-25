@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     menuButton: {
-        marginRight: 36,
+        marginRight: 0,
     },
     drawer: {
         width: drawerWidth,
@@ -150,6 +150,11 @@ const useStyles = makeStyles((theme) => ({
     barIcons: {
         marginLeft: '10px',
         marginRight: '10px'
+    },
+    sectionDesktop:{
+        display: 'flex',
+        position: 'absolute',
+        right: '20px'
     }
 }));
 
