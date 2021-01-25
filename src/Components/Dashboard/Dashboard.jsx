@@ -7,12 +7,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import InputBase from '@material-ui/core/InputBase';
+import SearchIcon from '@material-ui/icons/Search';
 
 import HighlightIcon from '@material-ui/icons/Highlight';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -20,6 +21,8 @@ import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ArchiveIcon from '@material-ui/icons/Archive';
 import DashLogo from '../../Assets/LogoDashboard.png'
+
+
 
 const drawerWidth = 250;
 
@@ -38,13 +41,59 @@ const useStyles = makeStyles((theme) => ({
         color: 'black',
         boxShadow: 'none',
         borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
-    
     },
-    appBarShift: {
-        marginLeft: drawerWidth,
+    search: {
+        display: 'flex',
+        alignItems: 'center',
+        position: 'relative',
+        paddingLeft: '10px',
+        paddingTop: '5px',
+        paddingBottom: '5px',
+        borderRadius: '10px',
+        backgroundColor: '#f1f3f4',
+        marginRight: theme.spacing(2),
+        marginLeft: 0,
         width: '100%',
-
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing(3),
+            width: 'auto',
+        },
     },
+    searchIcon: {
+        padding: '5px',
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    inputRoot: {
+        color: 'inherit',
+      },
+      inputInput: {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('md')]: {
+          width: '20ch',
+        },
+      },
+      sectionDesktop: {
+        display: 'none',
+        [theme.breakpoints.up('md')]: {
+          display: 'flex',
+        },
+      },
+      sectionMobile: {
+        display: 'flex',
+        [theme.breakpoints.up('md')]: {
+          display: 'none',
+        },
+      },
     menuButton: {
         marginRight: 36,
     },
@@ -84,9 +133,9 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(3),
     },
     buttonCustomization: {
-        borderTopRightRadius:'50px',
-        borderBottomRightRadius:'50px',
-        '&:focus':{
+        borderTopRightRadius: '50px',
+        borderBottomRightRadius: '50px',
+        '&:focus': {
             backgroundColor: '#feefc3'
         }
     }
@@ -117,12 +166,24 @@ export default function Dashboard() {
                         edge="start"
                         className={clsx(classes.menuButton)}
                     >
-                        <MenuIcon />
+                    <MenuIcon />
                     </IconButton>
-                    <img src={DashLogo} alt="Fundoo notes"/>
+                    <img src={DashLogo} alt="Fundoo notes" />
                     <Typography variant="h6" noWrap>
                         Fundoo Notes
-          </Typography>
+                    </Typography>
+                    <div className={classes.search}>
+                        <div className={classes.searchIcon}>
+                            <SearchIcon />
+                        </div>
+                        <InputBase className={classes.input}
+                            placeholder="Search…"
+                            classes={{
+                                root: classes.inputRoot,
+                                input: classes.inputInput,
+                            }}
+                        inputProps={{ 'aria-label': 'search' }}/>
+                    </div>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -138,26 +199,26 @@ export default function Dashboard() {
                     }),
                 }}
             >
-                <Divider />
-                <List style={{ marginTop: '70px' }}>
+                <List style={{ marginTop: '70px', }}
+                >
                     <ListItem button key='Notes' className={classes.buttonCustomization}>
-                        <ListItemIcon><HighlightIcon/></ListItemIcon>
+                        <ListItemIcon><HighlightIcon /></ListItemIcon>
                         <ListItemText primary='Notes' />
                     </ListItem>
-                    <ListItem button key='Reminders'className={classes.buttonCustomization}>
-                        <ListItemIcon><NotificationsIcon/></ListItemIcon>
+                    <ListItem button key='Reminders' className={classes.buttonCustomization}>
+                        <ListItemIcon><NotificationsIcon /></ListItemIcon>
                         <ListItemText primary='Reminders' />
                     </ListItem>
-                    <ListItem button key='Edit Labels'className={classes.buttonCustomization}>
-                        <ListItemIcon><CreateIcon/></ListItemIcon>
+                    <ListItem button key='Edit Labels' className={classes.buttonCustomization}>
+                        <ListItemIcon><CreateIcon /></ListItemIcon>
                         <ListItemText primary='Edit Labels' />
                     </ListItem>
                     <ListItem button key='Archive' className={classes.buttonCustomization}>
-                        <ListItemIcon><ArchiveIcon/></ListItemIcon>
+                        <ListItemIcon><ArchiveIcon /></ListItemIcon>
                         <ListItemText primary='Archive' />
                     </ListItem>
                     <ListItem button key='Bin' className={classes.buttonCustomization}>
-                        <ListItemIcon><DeleteIcon/></ListItemIcon>
+                        <ListItemIcon><DeleteIcon /></ListItemIcon>
                         <ListItemText primary='Bin' />
                     </ListItem>
                 </List>
