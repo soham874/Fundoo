@@ -47,7 +47,7 @@ export default class loginForm extends React.Component {
                     this.props.history.push("/dashboard")
                 }, 3000)
             }).catch((error) => {
-                this.state.password.current.setCustomError("Invald username/password")
+                SimpleSnackbar.handleClick("Invald username/password")
                 console.log(error)
             })
         }

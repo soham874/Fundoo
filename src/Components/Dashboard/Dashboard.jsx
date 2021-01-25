@@ -19,11 +19,13 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ArchiveIcon from '@material-ui/icons/Archive';
+import DashLogo from '../../Assets/LogoDashboard.png'
 
 const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        backgroundColor: 'white',
         display: 'flex',
     },
     appBar: {
@@ -35,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'white',
         color: 'black',
         boxShadow: 'none',
-        borderBottom: '1px solid rgba(0, 0, 0, 0.12)'
+        borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+    
     },
     appBarShift: {
         marginLeft: drawerWidth,
@@ -64,10 +67,8 @@ const useStyles = makeStyles((theme) => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
         overflowX: 'hidden',
-        width: theme.spacing(7) + 1,
-        [theme.breakpoints.up('sm')]: {
-            width: theme.spacing(9) + 1,
-        }, borderRight: 0
+        width: '50px',
+        borderRight: 0
     },
     toolbar: {
         display: 'flex',
@@ -79,8 +80,16 @@ const useStyles = makeStyles((theme) => ({
     },
     content: {
         flexGrow: 1,
+        backgroundColor: 'white',
         padding: theme.spacing(3),
     },
+    buttonCustomization: {
+        borderTopRightRadius:'50px',
+        borderBottomRightRadius:'50px',
+        '&:focus':{
+            backgroundColor: '#feefc3'
+        }
+    }
 }));
 
 export default function Dashboard() {
@@ -110,6 +119,7 @@ export default function Dashboard() {
                     >
                         <MenuIcon />
                     </IconButton>
+                    <img src={DashLogo} alt="Fundoo notes"/>
                     <Typography variant="h6" noWrap>
                         Fundoo Notes
           </Typography>
@@ -130,23 +140,23 @@ export default function Dashboard() {
             >
                 <Divider />
                 <List style={{ marginTop: '70px' }}>
-                    <ListItem button key='Notes'>
+                    <ListItem button key='Notes' className={classes.buttonCustomization}>
                         <ListItemIcon><HighlightIcon/></ListItemIcon>
                         <ListItemText primary='Notes' />
                     </ListItem>
-                    <ListItem button key='Reminders'>
+                    <ListItem button key='Reminders'className={classes.buttonCustomization}>
                         <ListItemIcon><NotificationsIcon/></ListItemIcon>
                         <ListItemText primary='Reminders' />
                     </ListItem>
-                    <ListItem button key='Edit Labels'>
+                    <ListItem button key='Edit Labels'className={classes.buttonCustomization}>
                         <ListItemIcon><CreateIcon/></ListItemIcon>
                         <ListItemText primary='Edit Labels' />
                     </ListItem>
-                    <ListItem button key='Archive'>
+                    <ListItem button key='Archive' className={classes.buttonCustomization}>
                         <ListItemIcon><ArchiveIcon/></ListItemIcon>
                         <ListItemText primary='Archive' />
                     </ListItem>
-                    <ListItem button key='Bin'>
+                    <ListItem button key='Bin' className={classes.buttonCustomization}>
                         <ListItemIcon><DeleteIcon/></ListItemIcon>
                         <ListItemText primary='Bin' />
                     </ListItem>
