@@ -26,12 +26,9 @@ import ReplayIcon from '@material-ui/icons/Replay'
 import ViewStreamOutlinedIcon from '@material-ui/icons/ViewStreamOutlined';
 import SettingsIcon from '@material-ui/icons/Settings';
 import DialpadIcon from '@material-ui/icons/Dialpad';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 import Badge from '@material-ui/core/Badge';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Menu from '@material-ui/core/Menu';
-import MailIcon from '@material-ui/icons/Mail';
 
 const drawerWidth = 250;
 
@@ -91,7 +88,9 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     sectionDesktop: {
-        display: 'none',
+        display: 'flex',
+        position: 'absolute',
+        right: '20px',
         [theme.breakpoints.up('md')]: {
             display: 'flex',
         },
@@ -151,11 +150,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '10px',
         marginRight: '10px'
     },
-    sectionDesktop:{
-        display: 'flex',
-        position: 'absolute',
-        right: '20px'
-    }
+
 }));
 
 export default function Dashboard() {
@@ -206,15 +201,6 @@ export default function Dashboard() {
                             }}
                             inputProps={{ 'aria-label': 'search' }} />
                     </div>
-                    {/* <div style={{ marginLeft: '10%' }}>
-                        <ReplayIcon className={classes.barIcons} />
-                        <ViewStreamOutlinedIcon className={classes.barIcons} />
-                        <SettingsIcon className={classes.barIcons} />
-                    </div>
-                    <div style={{ marginLeft: '20px'}}>
-                        <DialpadIcon className={classes.barIcons} />
-                        <AccountCircleIcon className={classes.barIcons} />
-                    </div> */}
 
                     <div className={classes.sectionDesktop}>
                         <IconButton>
@@ -265,7 +251,10 @@ export default function Dashboard() {
                     }),
                 }}
             >
-                <List style={{ marginTop: '70px', }}
+                <List 
+                    style={{ marginTop: '70px'}}
+                    onMouseEnter={handleDrawer}
+                    onMouseLeave={handleDrawer}
                 >
                     <ListItem button key='Notes' className={classes.buttonCustomization}>
                         <ListItemIcon><HighlightIcon /></ListItemIcon>
