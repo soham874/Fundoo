@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
     },
+
+// for toolbar
+
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['width', 'margin'], {
@@ -104,6 +107,9 @@ const useStyles = makeStyles((theme) => ({
             display: 'none',
         },
     },
+
+// for drawer
+
     menuButton: {
         marginRight: 0,
     },
@@ -111,6 +117,10 @@ const useStyles = makeStyles((theme) => ({
         width: drawerWidth,
         flexShrink: 0,
         whiteSpace: 'nowrap',
+        [theme.breakpoints.down('sm')]:{
+            position: 'fixed',
+        zIndex: 1,
+        },
     },
     drawerOpen: {
         width: drawerWidth,
@@ -141,6 +151,9 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         backgroundColor: 'white',
         padding: theme.spacing(3),
+        [theme.breakpoints.down('sm')]: {
+            marginLeft:'30px',
+        },
     },
     buttonCustomization: {
         borderRadius: '50px',
@@ -163,6 +176,7 @@ export default function Dashboard() {
     const handleDrawer = () => {
         setOpen(!open)
         flag = !flag
+        // window.innerWidth
     };
     const hoverHandle = () => {
         if(flag === false)
