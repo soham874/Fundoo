@@ -29,12 +29,12 @@ import DialpadIcon from '@material-ui/icons/Dialpad';
 
 import Badge from '@material-ui/core/Badge';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import './dashboard.css'
 
 const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: 'white',
         display: 'flex',
     },
     appBar: {
@@ -62,7 +62,10 @@ const useStyles = makeStyles((theme) => ({
         width: '50%',
         "&:click": {
             backgroundColor: 'white',
-        }
+        },
+        [theme.breakpoints.down('sm')]: {
+            display: 'none',
+        },
     },
     searchIcon: {
         padding: '5px',
@@ -140,8 +143,8 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(3),
     },
     buttonCustomization: {
-        borderTopRightRadius: '50px',
-        borderBottomRightRadius: '50px',
+        borderRadius: '50px',
+        // borderBottomRightRadius: '50px',
         '&:focus': {
             backgroundColor: '#feefc3'
         }
@@ -156,16 +159,11 @@ let flag = true
 export default function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const menuId = 'primary-search-account-menu';
+    
     const handleDrawer = () => {
         setOpen(!open)
         flag = !flag
     };
-    const handleProfileMenuOpen = (event) => {
-        setAnchorEl(event.currentTarget);
-      };
-
     const hoverHandle = () => {
         if(flag === false)
         setOpen(!open)
@@ -192,7 +190,7 @@ export default function Dashboard() {
                         <MenuIcon />
                     </IconButton>
                     <img src={DashLogo} alt="Fundoo notes" />
-                    <Typography variant="h6" noWrap>
+                    <Typography variant="h6" noWrap className={"heading"}>
                         Fundoo Notes
                     </Typography>
                     <div className={classes.search}>
@@ -232,9 +230,7 @@ export default function Dashboard() {
                         <IconButton
                             edge="end"
                             aria-label="account of current user"
-                            aria-controls={menuId}
                             aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
                             <AccountCircle />
