@@ -152,19 +152,25 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }));
-
+let flag = true
 export default function Dashboard() {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const menuId = 'primary-search-account-menu';
     const handleDrawer = () => {
         setOpen(!open)
+        flag = !flag
     };
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
       };
 
+    const hoverHandle = () => {
+        if(flag === false)
+        setOpen(!open)
+        
+    }
 
     return (
         <div className={classes.root}>
@@ -253,8 +259,8 @@ export default function Dashboard() {
             >
                 <List 
                     style={{ marginTop: '70px'}}
-                    onMouseEnter={handleDrawer}
-                    onMouseLeave={handleDrawer}
+                    onMouseEnter={hoverHandle}
+                    onMouseLeave={hoverHandle}
                 >
                     <ListItem button key='Notes' className={classes.buttonCustomization}>
                         <ListItemIcon><HighlightIcon /></ListItemIcon>
