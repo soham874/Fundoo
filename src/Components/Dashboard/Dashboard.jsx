@@ -29,7 +29,6 @@ import DialpadIcon from '@material-ui/icons/Dialpad';
 
 import Badge from '@material-ui/core/Badge';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import './dashboard.css'
 
 const drawerWidth = 250;
 
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
 
-// for toolbar
+    // for toolbar
 
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
@@ -107,8 +106,26 @@ const useStyles = makeStyles((theme) => ({
             display: 'none',
         },
     },
+    barIcons: {
+        marginLeft: '10px',
+        marginRight: '10px'
+    },
+    toolbar: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
+    },
+    heading: {
+        [theme.breakpoints.down('sm')]: {
+            display: 'none',
+        },
 
-// for drawer
+    },
+
+    // for drawer
 
     menuButton: {
         marginRight: 0,
@@ -117,9 +134,9 @@ const useStyles = makeStyles((theme) => ({
         width: drawerWidth,
         flexShrink: 0,
         whiteSpace: 'nowrap',
-        [theme.breakpoints.down('sm')]:{
+        [theme.breakpoints.down('sm')]: {
             position: 'fixed',
-        zIndex: 1,
+            zIndex: 1,
         },
     },
     drawerOpen: {
@@ -139,22 +156,7 @@ const useStyles = makeStyles((theme) => ({
         width: '50px',
         borderRight: 0
     },
-    toolbar: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        padding: theme.spacing(0, 1),
-        // necessary for content to be below app bar
-        ...theme.mixins.toolbar,
-    },
-    content: {
-        flexGrow: 1,
-        backgroundColor: 'white',
-        padding: theme.spacing(3),
-        [theme.breakpoints.down('sm')]: {
-            marginLeft:'30px',
-        },
-    },
+
     buttonCustomization: {
         borderRadius: '50px',
         // borderBottomRightRadius: '50px',
@@ -162,9 +164,17 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: '#feefc3'
         }
     },
-    barIcons: {
-        marginLeft: '10px',
-        marginRight: '10px'
+
+
+    // main body
+
+    content: {
+        flexGrow: 1,
+        backgroundColor: 'white',
+        padding: theme.spacing(3),
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: '30px',
+        },
     },
 
 }));
@@ -172,16 +182,16 @@ let flag = true
 export default function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
-    
+
     const handleDrawer = () => {
         setOpen(!open)
         flag = !flag
         // window.innerWidth
     };
     const hoverHandle = () => {
-        if(flag === false)
-        setOpen(!open)
-        
+        if (flag === false)
+            setOpen(!open)
+
     }
 
     return (
@@ -204,7 +214,7 @@ export default function Dashboard() {
                         <MenuIcon />
                     </IconButton>
                     <img src={DashLogo} alt="Fundoo notes" />
-                    <Typography variant="h6" noWrap className={"heading"}>
+                    <Typography variant="h6" noWrap className={classes.heading}>
                         Fundoo Notes
                     </Typography>
                     <div className={classes.search}>
@@ -223,12 +233,12 @@ export default function Dashboard() {
                     <div className={classes.sectionDesktop}>
                         <IconButton>
                             <Badge >
-                                <ReplayIcon/>
+                                <ReplayIcon />
                             </Badge>
                         </IconButton>
                         <IconButton>
                             <Badge >
-                                <ViewStreamOutlinedIcon  />
+                                <ViewStreamOutlinedIcon />
                             </Badge>
                         </IconButton>
                         <IconButton>
@@ -267,8 +277,8 @@ export default function Dashboard() {
                     }),
                 }}
             >
-                <List 
-                    style={{ marginTop: '70px'}}
+                <List
+                    style={{ marginTop: '70px' }}
                     onMouseEnter={hoverHandle}
                     onMouseLeave={hoverHandle}
                 >
