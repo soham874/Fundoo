@@ -33,10 +33,13 @@ export default class Note extends React.Component{
                     InputProps={{disableUnderline: true}}
                     InputLabelProps={{shrink: false}}
                 />
-                <div>
-                    <IconButton><PaletteIcon/></IconButton>
-                    <IconButton><ArchiveIcon/></IconButton>
-                    <IconButton><MoreVertIcon/></IconButton>
+                <div class={"iconPalette"}>
+                    <div style={{display:'flex'}}>
+                        <IconButton><PaletteIcon/></IconButton>
+                        <IconButton><ArchiveIcon/></IconButton>
+                        <IconButton><MoreVertIcon/></IconButton>
+                    </div>
+                    <div className = "noteSubmit">Close</div>
                 </div>
             </div>
         )
