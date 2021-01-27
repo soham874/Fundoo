@@ -110,14 +110,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '10px',
         marginRight: '10px'
     },
-    toolbar: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        padding: theme.spacing(0, 1),
-        // necessary for content to be below app bar
-        ...theme.mixins.toolbar,
-    },
+    
     heading: {
         [theme.breakpoints.down('sm')]: {
             display: 'none',
@@ -305,7 +298,7 @@ export default function Dashboard() {
                 </List>
             </Drawer>
             <main className={classes.content}>
-                <div className={classes.toolbar} />
+                
                 
             </main>
         </div>

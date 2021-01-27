@@ -5,6 +5,7 @@ import Login from './Components/Login/login'
 import Forgot from './Components/Forgot-password/forgot'
 import ResetPassword from './Components/Reset-Password/ResetPassword'
 import Dashboard from './Components/Dashboard/Dashboard'
+import Note from './Components/Note-Template/Note'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/forgot-password" component={Forgot} />
                 <Route path="/resetpassword/:id" component={ResetPassword} />
                 <Route path="/dashboard" component={Dashboard} />
+                <Route path="/testing" component={Note} />
             </Router>
         </div>
     );
