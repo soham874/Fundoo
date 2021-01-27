@@ -8,7 +8,8 @@ export default class Note extends React.Component {
         super(props)
         this.state = {
             HeadingLabel: 'Title',
-            BodyLabel: 'Take a note...'
+            BodyLabel: 'Take a note...',
+            backgroundColor: '#ffffff'
         }
     }
 
@@ -16,9 +17,14 @@ export default class Note extends React.Component {
         console.log(e)
     }
 
+    handleCallback = (inputString) => {
+        console.log(inputString)
+        this.setState({backgroundColor:inputString})
+    }
+
     render() {
         return (
-            <div className="note_palette">
+            <div className="note_palette" style={{backgroundColor:this.state.backgroundColor}}>
                 <TextField
                     multiline
                     margin="dense"
@@ -35,7 +41,7 @@ export default class Note extends React.Component {
                     InputLabelProps={{ shrink: false }}
                     onChange={this.change}
                 />
-                <IconPalette/>
+                <IconPalette parentCallback={this.handleCallback}/>
             </div>
         )
     }
