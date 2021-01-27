@@ -2,18 +2,24 @@
     display: flex;
     width: 40%;
     margin-top: 100px;
-    padding: 10px;
-    padding-top: 0;
+    padding-left: 10px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
     flex-direction: column;
-    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.19)
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+@media only screen and (max-width: 600px) {
+    .note_palette {
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }
 
 .iconPalette {
     padding-top: 20px;
-    display: flex;
     align-items: center;
     justify-content: space-between;
 }

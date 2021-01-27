@@ -30,6 +30,8 @@ import DialpadIcon from '@material-ui/icons/Dialpad';
 import Badge from '@material-ui/core/Badge';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
+import Note from '../Note-Template/Note'
+
 const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
@@ -164,9 +166,9 @@ const useStyles = makeStyles((theme) => ({
     content: {
         flexGrow: 1,
         backgroundColor: 'white',
-        padding: theme.spacing(3),
+        // padding: theme.spacing(3),
         [theme.breakpoints.down('sm')]: {
-            marginLeft: '30px',
+            marginLeft: '60px',
         },
     },
 
@@ -298,8 +300,7 @@ export default function Dashboard() {
                 </List>
             </Drawer>
             <main className={classes.content}>
-                
-                
+                <Note/>
             </main>
         </div>
     );

@@ -9,7 +9,8 @@ export default class Note extends React.Component {
         this.state = {
             HeadingLabel: 'Title',
             BodyLabel: 'Take a note...',
-            backgroundColor: '#ffffff'
+            backgroundColor: '#ffffff',
+            display: 'none'
         }
     }
 
@@ -18,26 +19,37 @@ export default class Note extends React.Component {
         this.setState({backgroundColor:inputString})
     }
 
+
+    changeCard = () => {
+        this.setState({display:(this.state.display === 'none'?'flex':'none')})
+    }
+
     render() {
         return (
-            <div className="note_palette" style={{backgroundColor:this.state.backgroundColor}}>
+            <div 
+            className="note_palette" 
+            style={{backgroundColor:this.state.backgroundColor}}
+            onMouseEnter = {this.changeCard}
+            onMouseLeave = {this.changeCard}
+            >
                 <TextField
+                    style={{display:this.state.display}}
                     multiline
+                    fullWidth
                     margin="dense"
                     placeholder={this.state.HeadingLabel}
                     InputProps={{ disableUnderline: true }}
                     InputLabelProps={{ shrink: false }}
-                    onChange={this.change}
                 />
                 <TextField
                     multiline
+                    fullWidth
                     margin="dense"
                     placeholder={this.state.BodyLabel}
                     InputProps={{ disableUnderline: true }}
                     InputLabelProps={{ shrink: false }}
-                    onChange={this.change}
                 />
-                <IconPalette parentCallback={this.handleCallback}/>
+                <IconPalette display={this.state.display} parentCallback={this.handleCallback}/>
             </div>
         )
     }
