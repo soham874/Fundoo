@@ -8,9 +8,19 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd'
 import ImageIcon from '@material-ui/icons/Image'
 
 export default class IconPalette extends React.Component {
+    constructor(props){
+        super(props)
+        this.state={
+            display: 'none'
+        }
+    }
 
     colorChoose = (color) => {
         return this.props.parentCallback(color)
+    }
+
+    paletteDisplay = () => {
+        this.setState({display:(this.state.display === 'none'?'flex':'none')})
     }
 
     render() {
@@ -19,7 +29,11 @@ export default class IconPalette extends React.Component {
                 <div style={{ display: 'flex', position: 'relative' }}>
                     <IconButton><AddAlertIcon /></IconButton>
                     <IconButton><PersonAddIcon /></IconButton>
-                    <div className={"colorPalette"}>
+                    <div 
+                        className={"colorPalette"} 
+                        style={{display:this.state.display}}
+                        onMouseLeave={() => this.paletteDisplay()}
+                    >
                         {['#ffffff', '#f28b82', '#fbbc04', '#fff475',
                             '#ccff90', '#a7ffeb', '#cbf0f8', '#aecbfa',
                             '#d7aefb', '#fdcfe8', '#e6c9a8', '#e8eaed'].map((current) => (
@@ -31,7 +45,10 @@ export default class IconPalette extends React.Component {
                                 />
                             ))}
                     </div>
-                    <IconButton><PaletteIcon /></IconButton>
+                    <IconButton 
+                        onMouseEnter={() => this.paletteDisplay()}
+                        onMouseLeave={() => this.paletteDisplay()}
+                    ><PaletteIcon /></IconButton>
                     <IconButton><ImageIcon /></IconButton>
                     <IconButton><ArchiveIcon /></IconButton>
                     <IconButton><MoreVertIcon /></IconButton>

@@ -13,12 +13,8 @@ export default class Note extends React.Component {
         }
     }
 
-    change = (e) => {
-        console.log(e)
-    }
 
     handleCallback = (inputString) => {
-        console.log(inputString)
         this.setState({backgroundColor:inputString})
     }
 
