@@ -2,6 +2,7 @@ import React from 'react'
 import { TextInput } from '../InputField/inputFields'
 import '../Registration/registration.css'
 import { Checkbox } from '@material-ui/core'
+
 import UserServices from '../../services/userService'
 import SimpleSnackbar from '../Snackbar/snackbarMessages'
 
