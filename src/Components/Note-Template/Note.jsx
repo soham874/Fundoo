@@ -1,14 +1,7 @@
 import React from 'react'
 import './Note.css'
 import { TextField } from '@material-ui/core'
-
-import PaletteIcon from '@material-ui/icons/Palette';
-import ArchiveIcon from '@material-ui/icons/Archive';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import IconButton from '@material-ui/core/IconButton';
-import AddAlertIcon from '@material-ui/icons/AddAlert'
-import PersonAddIcon from '@material-ui/icons/PersonAdd'
-import ImageIcon from '@material-ui/icons/Image'
+import IconPalette from '../Icon-Palette/iconsPalette'
 
 export default class Note extends React.Component {
     constructor(props) {
@@ -42,17 +35,7 @@ export default class Note extends React.Component {
                     InputLabelProps={{ shrink: false }}
                     onChange={this.change}
                 />
-                <div class={"iconPalette"}>
-                    <div style={{ display: 'flex' }}>
-                        <IconButton><AddAlertIcon /></IconButton>
-                        <IconButton><PersonAddIcon /></IconButton>
-                        <IconButton><PaletteIcon /></IconButton>
-                        <IconButton><ImageIcon /></IconButton>
-                        <IconButton><ArchiveIcon /></IconButton>
-                        <IconButton><MoreVertIcon /></IconButton>
-                    </div>
-                    <div className="noteSubmit">Close</div>
-                </div>
+                <IconPalette/>
             </div>
         )
     }
