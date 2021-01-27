@@ -4,6 +4,7 @@ import { TextField } from '@material-ui/core'
 import PaletteIcon from '@material-ui/icons/Palette';
 import ArchiveIcon from '@material-ui/icons/Archive';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import IconButton from '@material-ui/core/IconButton';
 
 export default class Note extends React.Component{
     constructor(props){
