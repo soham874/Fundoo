@@ -36,7 +36,7 @@ import NoteServies from '../../services/noteServices'
 let noteservices = new NoteServies()
 
 const drawerWidth = 250;
-let serverData
+
 const userId = localStorage.getItem('userId')
 
 const useStyles = makeStyles((theme) => ({
@@ -118,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '10px',
         marginRight: '10px'
     },
-    
+
     heading: {
         [theme.breakpoints.down('sm')]: {
             display: 'none',
@@ -184,7 +184,9 @@ let flag = true
 export default function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
-
+    const [state, setState] = React.useState({
+        info : []
+    });
     const handleDrawer = () => {
         setOpen(!open)
         flag = !flag
@@ -196,19 +198,25 @@ export default function Dashboard() {
 
     }
     const handleCallback = (inputform) => {
-        noteservices.createNote(inputform,userId).then((response) => {
-            console.log(response)   
+        noteservices.createNote(inputform, userId).then((response) => {
+            console.log(response)
         }).catch((error) => {
             console.log(error)
         })
     }
-    
+
     const getNotes = () => {
-        
+        let infoCollected = []
         noteservices.getNotes(userId).then((response) => {
-            // console.log(response) 
-            serverData = response.data.data.data[0]
-            console.log(serverData)  
+            let serverData = response.data.data.data
+            for (let i = 0; i < serverData.length; i++) {
+                let data = {
+                    "title": serverData[i].title,
+                    "description": serverData[i].description,
+                    "color": serverData[i].color
+                }
+                infoCollected.push(data)
+            }setState({info:infoCollected})
         }).catch((error) => {
             console.log(error)
         })
@@ -325,8 +333,17 @@ export default function Dashboard() {
                 </List>
             </Drawer>
             <main className={classes.content}>
-                <Note title='' body='' color='#ffffff' parentCallback={handleCallback}/>
+                <Note title='' body='' color='#ffffff' parentCallback={handleCallback} />
                 {getNotes()}
+                {Object.values(state.info).map((current) => {
+                    return (
+                        <div>
+                        <div>{current.title}</div>
+                        <div>{current.description}</div>
+                        <div>{current.color}</div>
+                    </div>
+                    )                   
+                })}
             </main>
         </div>
     );
