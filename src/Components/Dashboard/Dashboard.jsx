@@ -37,6 +37,7 @@ const drawerWidth = 250;
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
+        backgroundColor: 'white'
     },
 
     // for toolbar
@@ -174,6 +175,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 let flag = true
+
 export default function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);

@@ -7,10 +7,13 @@ export default class Note extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            HeadingLabel: 'Title',
-            BodyLabel: 'Take a note...',
+            HeadingLabel: '',
+            BodyLabel: '',
             backgroundColor: '#ffffff',
-            isOpen: false
+            isOpen: false,
+
+            title : React.createRef(),
+            body : React.createRef(),
         }
         this.setWrapperRef = this.setWrapperRef.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
@@ -40,7 +43,16 @@ export default class Note extends React.Component {
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
             this.changeCard(false)
+            console.log(this.state)
         }
+    }
+
+    updateBodyValue = (e) => {
+        this.setState({BodyLabel : e.target.value})
+    }
+
+    updateTitleValue = (e) => {
+        this.setState({HeadingLabel : e.target.value})
     }
 
     //displays Title input
@@ -50,10 +62,12 @@ export default class Note extends React.Component {
                 <TextField
                     multiline
                     fullWidth
+                    ref={this.state.title}
                     margin="dense"
-                    placeholder={this.state.HeadingLabel}
+                    placeholder='Title'
                     InputProps={{ disableUnderline: true }}
                     InputLabelProps={{ shrink: false }}
+                    onChange={this.updateTitleValue}
                 />
             )
     }
@@ -83,12 +97,14 @@ export default class Note extends React.Component {
             >
                 {this.headerInput()}
                 <TextField
+                    ref={this.state.body}
                     multiline
                     fullWidth
                     margin="dense"
-                    placeholder={this.state.BodyLabel}
+                    placeholder='Take a note...'
                     InputProps={{ disableUnderline: true }}
                     InputLabelProps={{ shrink: false }}
+                    onChange={this.updateBodyValue}
                 />
                 {this.paletteDiv()}
             </div>
