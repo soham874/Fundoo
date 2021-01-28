@@ -51,8 +51,7 @@ export default class IconPalette extends React.Component {
                             ))}
                     </div>
                     <IconButton 
-                        onMouseEnter={() => this.paletteDisplay()}
-                        onMouseLeave={() => this.paletteDisplay()}
+                        onClick={() => this.paletteDisplay()}
                     ><PaletteIcon /></IconButton>
                     <IconButton><ImageIcon /></IconButton>
                     <IconButton><ArchiveIcon /></IconButton>

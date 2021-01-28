@@ -12,8 +12,8 @@ export default class Note extends React.Component {
             backgroundColor: '#ffffff',
             isOpen: false,
 
-            title : React.createRef(),
-            body : React.createRef(),
+            title: React.createRef(),
+            body: React.createRef(),
         }
         this.setWrapperRef = this.setWrapperRef.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
@@ -46,26 +46,30 @@ export default class Note extends React.Component {
             //setting card display off
             this.changeCard(false)
 
-            //collecting data in form data format
-            let formdata= new FormData()
-            formdata.set('title',this.state.HeadingLabel)
-            formdata.set('description',this.state.BodyLabel)
-            formdata.set('color',this.state.backgroundColor)
+            //API gets hit only if data is present in both fields
+            if (this.state.BodyLabel.length !== 0 && this.state.HeadingLabel.length !== 0) {
+ 
+                //collecting data in form data format
+                let formdata = new FormData()
+                formdata.set('title', this.state.HeadingLabel)
+                formdata.set('description', this.state.BodyLabel)
+                formdata.set('color', this.state.backgroundColor)
 
-            //resetting the fields
-            this.setState({HeadingLabel:'',BodyLabel:'',backgroundColor:'#ffffff'})
+                //resetting the fields
+                this.setState({ HeadingLabel: '', BodyLabel: '', backgroundColor: '#ffffff' })
 
-            //returning the formdata
-            return this.props.parentCallback(formdata)
+                //returning the formdata
+                return this.props.parentCallback(formdata)
+            }
         }
     }
 
     updateBodyValue = (e) => {
-        this.setState({BodyLabel : e.target.value})
+        this.setState({ BodyLabel: e.target.value })
     }
 
     updateTitleValue = (e) => {
-        this.setState({HeadingLabel : e.target.value})
+        this.setState({ HeadingLabel: e.target.value })
     }
 
     //displays Title input
@@ -91,14 +95,14 @@ export default class Note extends React.Component {
         if (this.state.isOpen)
             return (
                 <IconPalette
-                    parentCallback={this.handleCallback} 
+                    parentCallback={this.handleCallback}
                 />
             )
     }
 
     //controls display of divs
     changeCard = (status) => {
-        this.setState({isOpen:status})
+        this.setState({ isOpen: status })
     }
 
     render() {
