@@ -31,7 +31,7 @@ export default class IconPalette extends React.Component {
         return (
             <div 
                 className={"iconPalette"}
-                style = {{display:this.props.display,flexDirection:'row',flexWrap:'wrap'}}
+                style = {{flexDirection:'row',flexWrap:'wrap'}}
                 >
                 <div style={{ display: 'flex', position: 'relative' }}>
                     <IconButton><AddAlertIcon /></IconButton>
