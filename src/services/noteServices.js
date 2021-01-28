@@ -14,4 +14,13 @@ export default class UserService {
             }
         })
     }
+
+    //receives note lists
+    getNotes = (token) => {
+        return axiosService.get(`${baseUrl}getNotesList`, {
+            headers: {
+                Authorization: token
+            }
+        })
+    }
 }

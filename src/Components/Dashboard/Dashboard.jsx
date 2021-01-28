@@ -36,6 +36,8 @@ import NoteServies from '../../services/noteServices'
 let noteservices = new NoteServies()
 
 const drawerWidth = 250;
+let serverData
+const userId = localStorage.getItem('userId')
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -194,7 +196,6 @@ export default function Dashboard() {
 
     }
     const handleCallback = (inputform) => {
-        let userId = localStorage.getItem('userId')
         noteservices.createNote(inputform,userId).then((response) => {
             console.log(response)   
         }).catch((error) => {
@@ -202,6 +203,17 @@ export default function Dashboard() {
         })
     }
     
+    const getNotes = () => {
+        
+        noteservices.getNotes(userId).then((response) => {
+            // console.log(response) 
+            serverData = response.data.data.data[0]
+            console.log(serverData)  
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -313,7 +325,8 @@ export default function Dashboard() {
                 </List>
             </Drawer>
             <main className={classes.content}>
-                <Note parentCallback={handleCallback}/>
+                <Note title='' body='' color='#ffffff' parentCallback={handleCallback}/>
+                {getNotes()}
             </main>
         </div>
     );

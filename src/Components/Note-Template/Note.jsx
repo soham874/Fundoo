@@ -7,9 +7,9 @@ export default class Note extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            HeadingLabel: '',
-            BodyLabel: '',
-            backgroundColor: '#ffffff',
+            HeadingLabel: this.props.title,
+            BodyLabel: this.props.body,
+            backgroundColor: this.props.color,
             isOpen: false,
 
             title: React.createRef(),
