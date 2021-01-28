@@ -190,7 +190,10 @@ export default function Dashboard() {
             setOpen(!open)
 
     }
-
+    const handleCallback = (inputString) => {
+        return inputString
+    }
+    
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -302,7 +305,7 @@ export default function Dashboard() {
                 </List>
             </Drawer>
             <main className={classes.content}>
-                <Note/>
+                <Note parentCallback={handleCallback}/>
             </main>
         </div>
     );

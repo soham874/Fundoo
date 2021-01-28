@@ -42,8 +42,21 @@ export default class Note extends React.Component {
     //checks location of click when click listener is active
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+
+            //setting card display off
             this.changeCard(false)
-            console.log(this.state)
+
+            //collecting data in form data format
+            let formdata= new FormData()
+            formdata.set('title',this.state.HeadingLabel)
+            formdata.set('description',this.state.BodyLabel)
+            formdata.set('color',this.state.backgroundColor)
+
+            //resetting the fields
+            this.setState({HeadingLabel:'',BodyLabel:'',backgroundColor:'#ffffff'})
+
+            //returning the formdata
+            return this.props.parentCallback(formdata)
         }
     }
 
@@ -65,6 +78,7 @@ export default class Note extends React.Component {
                     ref={this.state.title}
                     margin="dense"
                     placeholder='Title'
+                    value={this.state.HeadingLabel}
                     InputProps={{ disableUnderline: true }}
                     InputLabelProps={{ shrink: false }}
                     onChange={this.updateTitleValue}
@@ -102,6 +116,7 @@ export default class Note extends React.Component {
                     fullWidth
                     margin="dense"
                     placeholder='Take a note...'
+                    value={this.state.BodyLabel}
                     InputProps={{ disableUnderline: true }}
                     InputLabelProps={{ shrink: false }}
                     onChange={this.updateBodyValue}
