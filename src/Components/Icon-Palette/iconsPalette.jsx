@@ -7,6 +7,10 @@ import AddAlertIcon from '@material-ui/icons/AddAlert'
 import PersonAddIcon from '@material-ui/icons/PersonAdd'
 import ImageIcon from '@material-ui/icons/Image'
 
+const colorArray = ['#ffffff', '#f28b82', '#fbbc04', '#fff475',
+'#ccff90', '#a7ffeb', '#cbf0f8', '#aecbfa',
+'#d7aefb', '#fdcfe8', '#e6c9a8', '#e8eaed']
+
 export default class IconPalette extends React.Component {
     constructor(props){
         super(props)
@@ -37,9 +41,7 @@ export default class IconPalette extends React.Component {
                         style={{display:this.state.display}}
                         onMouseLeave={() => this.paletteDisplay()}
                     >
-                        {['#ffffff', '#f28b82', '#fbbc04', '#fff475',
-                            '#ccff90', '#a7ffeb', '#cbf0f8', '#aecbfa',
-                            '#d7aefb', '#fdcfe8', '#e6c9a8', '#e8eaed'].map((current) => (
+                        {colorArray.map((current) => (
                                 <div
                                     className={"colorChoice"}
                                     key={current}

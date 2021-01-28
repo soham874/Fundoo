@@ -10,17 +10,41 @@ export default class Note extends React.Component {
             HeadingLabel: 'Title',
             BodyLabel: 'Take a note...',
             backgroundColor: '#ffffff',
-            display: 'none'
+            display: 'none',
+            // displayRef: React.createRef()
         }
+        
+        this.setWrapperRef = this.setWrapperRef.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
-
+    setWrapperRef(node) {
+        this.wrapperRef = node;
+      }
+    
     handleCallback = (inputString) => {
         this.setState({backgroundColor:inputString})
     }
 
+    componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
 
-    changeCard = () => {
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
+    /**
+     * Alert if clicked on outside of element
+     */
+    handleClickOutside(event) {
+        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+            alert('You clicked outside of me!');
+        }
+    }
+
+
+    changeCard = ( ) => {
         this.setState({display:(this.state.display === 'none'?'flex':'none')})
     }
 
@@ -29,11 +53,11 @@ export default class Note extends React.Component {
             <div 
             className="note_palette" 
             style={{backgroundColor:this.state.backgroundColor}}
-            onMouseEnter = {this.changeCard}
-            onMouseLeave = {this.changeCard}
+            onClick={this.changeCard}
+            ref={this.setWrapperRef}
             >
                 <TextField
-                    style={{display:this.state.display}}
+                    style={{display:this.state.display}}       
                     multiline
                     fullWidth
                     margin="dense"
@@ -49,7 +73,10 @@ export default class Note extends React.Component {
                     InputProps={{ disableUnderline: true }}
                     InputLabelProps={{ shrink: false }}
                 />
-                <IconPalette display={this.state.display} parentCallback={this.handleCallback}/>
+                <IconPalette 
+                    // ref={this.state.displayRef}
+                    display={this.state.display} 
+                    parentCallback={this.handleCallback}/>
             </div>
         )
     }
