@@ -26,7 +26,7 @@ export default function ResetForm(props) {
         state.password.current.togglePassword()
         state.confirm.current.togglePassword()
     }
-
+ 
     //verifies password validity and resets
     const checkInput = (e) => {
         e.preventDefault();

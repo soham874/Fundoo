@@ -19,7 +19,7 @@ export default class Note extends React.Component {
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
-    //create a node rerpresenting the React DOM "node"
+    //create a node representing the React DOM "note"
     setWrapperRef(node) {
         this.wrapperRef = node;
     }

@@ -31,6 +31,9 @@ import Badge from '@material-ui/core/Badge';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import Note from '../Note-Template/Note'
+import NoteServies from '../../services/noteServices'
+
+let noteservices = new NoteServies()
 
 const drawerWidth = 250;
 
@@ -190,8 +193,13 @@ export default function Dashboard() {
             setOpen(!open)
 
     }
-    const handleCallback = (inputString) => {
-        return inputString
+    const handleCallback = (inputform) => {
+        let userId = localStorage.getItem('userId')
+        noteservices.createNote(inputform,userId).then((response) => {
+            console.log(response)   
+        }).catch((error) => {
+            console.log(error)
+        })
     }
     
     return (

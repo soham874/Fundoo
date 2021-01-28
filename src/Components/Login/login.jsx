@@ -42,6 +42,7 @@ export default class loginForm extends React.Component {
             }
             userServices.login(data).then((response) => {
                 console.log(response)
+                localStorage.setItem('userId',response.data.id)
                 SimpleSnackbar.handleClick("Login successful")
                 setTimeout(() => {
                     this.props.history.push("/dashboard")
