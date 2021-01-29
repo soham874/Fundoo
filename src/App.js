@@ -6,19 +6,22 @@ import Forgot from './Components/Forgot-password/forgot'
 import ResetPassword from './Components/Reset-Password/ResetPassword'
 import Dashboard from './Components/Dashboard/Dashboard'
 import Note from './Components/Note-Template/Note'
-import { Route, BrowserRouter as Router, Redirect } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Redirect, Switch } from 'react-router-dom'
+import ProtectedRoute from './ProtectedRoute'
 
 function App() {
     return (
         <div className="App">
             <Router>
-                <Redirect path="/" to="/login" />
+                <Switch>
+                <Redirect path="/" exact to="/login" />
                 <Route path="/registration" component={RegistrationForm} />
                 <Route path="/login" component={Login} />
                 <Route path="/forgot-password" component={Forgot} />
                 <Route path="/resetpassword/:id" component={ResetPassword} />
-                <Route path="/dashboard" component={Dashboard} />
+                <ProtectedRoute path="/dashboard" component={Dashboard} />
                 <Route path="/testing" component={Note} />
+                </Switch>
             </Router>
         </div>
     );

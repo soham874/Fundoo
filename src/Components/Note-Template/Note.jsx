@@ -74,7 +74,7 @@ export default class Note extends React.Component {
 
     //displays Title input
     headerInput = () => {
-        if (this.state.isOpen)
+        if (this.state.isOpen || this.props.isOld)
             return (
                 <TextField
                     multiline
@@ -108,7 +108,7 @@ export default class Note extends React.Component {
     render() {
         return (
             <div
-                className="note_palette"
+                className={this.props.isOld?"note_palette_updated":"note_palette"}
                 style={{ backgroundColor: this.state.backgroundColor }}
                 onClick={() => { this.changeCard(true) }}
                 ref={this.setWrapperRef}

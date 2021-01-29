@@ -193,11 +193,13 @@ export default function Dashboard() {
         setOpen(!open)
         flag = !flag
     };
+
     const hoverHandle = () => {
         if (flag === false)
             setOpen(!open)
 
     }
+
     const handleCallback = (inputform) => {
         noteservices.createNote(inputform, userId).then((response) => {
             console.log(response)
@@ -209,18 +211,19 @@ export default function Dashboard() {
 
     const getNotes = () => {
         infoCollected = []
+        console.log(userId)
         noteservices.getNotes(userId).then((response) => {
             console.log(response)
             let serverData = response.data.data.data
-            for (let i = 0; i < serverData.length; i++) {
-                let data = {
-                    "title": serverData[i].title,
-                    "description": serverData[i].description,
-                    "color": serverData[i].color
-                }
-                infoCollected.push(data)
-            }
-            setState({info:infoCollected})
+            // for (let i = 0; i < serverData.length; i++) {
+            //     let data = {
+            //         "title": serverData[i].title,
+            //         "description": serverData[i].description,
+            //         "color": serverData[i].color
+            //     }
+            //     infoCollected.push(serverData)
+            // }
+            setState({info:serverData})
         }).catch((error) => {
             console.log(error)
         })
@@ -343,14 +346,14 @@ export default function Dashboard() {
             </Drawer>
             <main className={classes.content}>
                 <Note title='' body='' color='#ffffff' parentCallback={handleCallback} />
+                <div className = "update_div">
                 {Object.values(state.info).map((current) => {
                     return (
-                        // <Note title={current.title} body={current.description} color={current.color} parentCallback={handleCallback} />
-                        
-                        <div>{current.title},{current.description},{current.color}</div>
-                
+                        // <Note title={current.title} body={current.description} color={current.color} parentCallback={handleCallback} isOld={true}/>                        
+                        <p>{current.title},{current.description},{current.color}</p>          
                     )                   
                 })}
+                </div>
             </main>
         </div>
     );
