@@ -210,19 +210,10 @@ export default function Dashboard() {
     }
 
     const getNotes = () => {
-        infoCollected = []
         console.log(userId)
         noteservices.getNotes(userId).then((response) => {
             console.log(response)
             let serverData = response.data.data.data
-            // for (let i = 0; i < serverData.length; i++) {
-            //     let data = {
-            //         "title": serverData[i].title,
-            //         "description": serverData[i].description,
-            //         "color": serverData[i].color
-            //     }
-            //     infoCollected.push(serverData)
-            // }
             setState({info:serverData})
         }).catch((error) => {
             console.log(error)

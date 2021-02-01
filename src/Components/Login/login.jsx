@@ -13,6 +13,7 @@ export default class loginForm extends React.Component {
         this.state = {
             userName: React.createRef(),
             password: React.createRef(),
+            notification: ''
         }
     }
 
@@ -43,12 +44,12 @@ export default class loginForm extends React.Component {
             userServices.login(data).then((response) => {
                 console.log(response)
                 localStorage.setItem('userId',response.data.id)
-                SimpleSnackbar.handleClick("Login successful")
+                this.setState({notification:"Account login successfully"})
                 setTimeout(() => {
                     this.props.history.push("/dashboard")
                 }, 3000)
             }).catch((error) => {
-                SimpleSnackbar.handleClick("Invald username/password")
+                this.setState({notification:"Invalid username/password"})
                 console.log(error)
             })
         }
@@ -82,7 +83,7 @@ export default class loginForm extends React.Component {
                     <Link to="/registration" className="link"><div>Create a new account</div></Link>
                     <span><button onClick={this.checkInput}>Login</button></span>
                 </div>
-                <SimpleSnackbar/>
+                <SimpleSnackbar notif={this.state.notification}/>
             </form>
 
         )
