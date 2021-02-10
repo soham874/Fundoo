@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Fundoo/static/css/main.503de331.chunk.css",
-    "main.js": "/Fundoo/static/js/main.7c398c32.chunk.js",
-    "main.js.map": "/Fundoo/static/js/main.7c398c32.chunk.js.map",
+    "main.js": "/Fundoo/static/js/main.17a9a132.chunk.js",
+    "main.js.map": "/Fundoo/static/js/main.17a9a132.chunk.js.map",
     "runtime-main.js": "/Fundoo/static/js/runtime-main.0e1503fc.js",
     "runtime-main.js.map": "/Fundoo/static/js/runtime-main.0e1503fc.js.map",
     "static/js/2.164f13ae.chunk.js": "/Fundoo/static/js/2.164f13ae.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.0e1503fc.js",
     "static/js/2.164f13ae.chunk.js",
     "static/css/main.503de331.chunk.css",
-    "static/js/main.7c398c32.chunk.js"
+    "static/js/main.17a9a132.chunk.js"
   ]
 }
