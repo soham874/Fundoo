@@ -3,6 +3,7 @@ import { TextInput } from '../InputField/inputFields'
 import '../Registration/registration.css'
 import { Checkbox } from '@material-ui/core'
 import SimpleSnackbar from '../Snackbar/snackbarMessages'
+import fire from '../../services/fire'
 
 const patternPassword = RegExp('(?=.*[A-Z])(?=.*[0-9])(?=[^.,:;!@#$%^&*_+=]*[.,:;!@#$%^&*_+=][^.,:;!@#$%^&*_+=]*$).{8,}$')
 
@@ -26,7 +27,8 @@ export default function ResetForm(props) {
     //verifies password validity and resets
     const checkInput = (e) => {
         e.preventDefault();
-        // let token = props.match.params.id
+        
+        var code=props.location.search.split("&")[1].split("=")[1]
         let password = state.password.current.returnValue()
         let confirm = state.confirm.current.returnValue()
 
@@ -40,21 +42,17 @@ export default function ResetForm(props) {
             state.confirm.current.setCustomError("Passwords donot match")
             return
         }
-
-        // let data = {
-        //     "newPassword": password
-        // }
-
-        // userServices.resetPassword(data, token).then((response) => {
-        //     console.log(response)
-        //     SimpleSnackbar.handleClick("Password has been reset successfully")
-        //     setTimeout(() => {
-        //         props.history.push("/login")
-        //     }, 3000)
-        // }).catch((error) => {
-        //     SimpleSnackbar.handleClick("Password reset failed")
-        //     console.log(error)
-        // })
+        
+        fire.auth().confirmPasswordReset(code, password).then((response) => {
+                console.log(response)
+                SimpleSnackbar.handleClick("Password has been reset successfully")
+                setTimeout(() => {
+                    props.history.push("/login")
+                }, 3000)
+            }).catch((error) => {
+                SimpleSnackbar.handleClick("Password reset failed")
+                console.log(error)
+            })
     }
 
     return (
