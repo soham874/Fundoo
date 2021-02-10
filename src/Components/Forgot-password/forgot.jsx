@@ -3,10 +3,7 @@ import { TextInput } from '../InputField/inputFields'
 import '../Login/login.css'
 import '../Registration/registration.css'
 import { Link } from 'react-router-dom'
-import UserServices from '../../services/userService'
 import SimpleSnackbar from '../Snackbar/snackbarMessages'
-
-const userServices = new UserServices()
 
 export default class loginForm extends React.Component {
     constructor(props) {
@@ -31,17 +28,17 @@ export default class loginForm extends React.Component {
                 "email": username
             }
 
-            userServices.resetEmail(data).then((response) => {
-                console.log(response)
-                this.state.userName.current.resetField()
-                SimpleSnackbar.handleClick("Reset link sent successfully")
-                setTimeout(() => {
-                    this.props.history.push("/login")
-                }, 3000)
-            }).catch((error) => {
-                this.state.userName.current.setCustomError("Email doesnot exist in database")
-                console.log(error)
-            })
+            // userServices.resetEmail(data).then((response) => {
+            //     console.log(response)
+            //     this.state.userName.current.resetField()
+            //     SimpleSnackbar.handleClick("Reset link sent successfully")
+            //     setTimeout(() => {
+            //         this.props.history.push("/login")
+            //     }, 3000)
+            // }).catch((error) => {
+            //     this.state.userName.current.setCustomError("Email doesnot exist in database")
+            //     console.log(error)
+            // })
         }
     }
 

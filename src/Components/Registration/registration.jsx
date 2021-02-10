@@ -5,12 +5,10 @@ import logo from '../../Assets/account.svg'
 import './registration.css'
 import { Link } from 'react-router-dom'
 import { Checkbox } from '@material-ui/core'
-import UserServices from '../../services/userService'
+import fire from '../../services/fire'
 
 // soham8744@gmail.com
-// abcdefgQ1!
-
-const userServices = new UserServices()
+// abcdefgQ1! 
 
 const patternFirstName = RegExp('^[A-Z][a-z]{2,}$')
 const patternLastName = RegExp('^[A-Z][a-z]{2,}$')
@@ -83,20 +81,27 @@ export default class registrationForm extends React.Component {
             "firstName": inputValues[0],
             "lastName": inputValues[1],
             "email": inputValues[2],
-            "service": "advance",
-            "password": inputValues[3]
         }
 
-        userServices.registration(data).then((response) => {
+        fire.auth().createUserWithEmailAndPassword(inputValues[2],inputValues[3]).then((response)=>{
             console.log(response)
-            SimpleSnackbar.handleClick("Email registered successfully")
-            setTimeout(() => {
-                this.props.history.push("/login")
-            }, 3000)
-        }).catch((error) => {
-            console.log(error);
-            this.state.userName.current.setCustomError("This email already exists")
-            SimpleSnackbar.handleClick("This email already exists")
+            SimpleSnackbar.handleClick("Account created successfully")
+            
+            let ref = fire.database().ref().child(
+                `userInfo/${inputValues[2].split("@")[0].split('.').join('|')}`
+                ).set(data)
+            ref.then((response)=>{
+                console.log(response)
+                fire.auth().signOut()
+                setTimeout(() => {
+                    this.props.history.push("/login")
+                }, 3000)
+            }).catch((error)=>{
+                console.log(error)
+            })         
+        }).catch((error)=>{
+            console.log(error)
+            SimpleSnackbar.handleClick(error.message)
         })
     }
 

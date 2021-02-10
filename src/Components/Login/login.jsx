@@ -2,10 +2,7 @@ import React from 'react'
 import { TextInput } from '../InputField/inputFields'
 import { Link } from 'react-router-dom'
 import { Checkbox } from '@material-ui/core'
-import UserServices from '../../services/userService'
 import SimpleSnackbar from '../Snackbar/snackbarMessages'
-
-const userServices = new UserServices()
 
 export default class loginForm extends React.Component {
     constructor(props) {
@@ -41,17 +38,17 @@ export default class loginForm extends React.Component {
                 "email": username,
                 "password": password
             }
-            userServices.login(data).then((response) => {
-                console.log(response)
-                localStorage.setItem('userId',response.data.id)
-                this.setState({notification:"Account login successfully"})
-                setTimeout(() => {
-                    this.props.history.push("/dashboard")
-                }, 3000)
-            }).catch((error) => {
-                this.setState({notification:"Invalid username/password"})
-                console.log(error)
-            })
+            // userServices.login(data).then((response) => {
+            //     console.log(response)
+            //     localStorage.setItem('userId',response.data.id)
+            //     this.setState({notification:"Account login successfully"})
+            //     setTimeout(() => {
+            //         this.props.history.push("/dashboard")
+            //     }, 3000)
+            // }).catch((error) => {
+            //     this.setState({notification:"Invalid username/password"})
+            //     console.log(error)
+            // })
         }
     }
 

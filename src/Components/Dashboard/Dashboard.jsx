@@ -31,9 +31,6 @@ import Badge from '@material-ui/core/Badge';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import Note from '../Note-Template/Note'
-import NoteServies from '../../services/noteServices'
-
-let noteservices = new NoteServies()
 
 const drawerWidth = 250;
 
@@ -201,23 +198,23 @@ export default function Dashboard() {
     }
 
     const handleCallback = (inputform) => {
-        noteservices.createNote(inputform, userId).then((response) => {
-            console.log(response)
-            getNotes()
-        }).catch((error) => {
-            console.log(error)
-        })
+        // noteservices.createNote(inputform, userId).then((response) => {
+        //     console.log(response)
+        //     getNotes()
+        // }).catch((error) => {
+        //     console.log(error)
+        // })
     }
 
     const getNotes = () => {
         console.log(userId)
-        noteservices.getNotes(userId).then((response) => {
-            console.log(response)
-            let serverData = response.data.data.data
-            setState({info:serverData})
-        }).catch((error) => {
-            console.log(error)
-        })
+        // noteservices.getNotes(userId).then((response) => {
+        //     console.log(response)
+        //     let serverData = response.data.data.data
+        //     setState({info:serverData})
+        // }).catch((error) => {
+        //     console.log(error)
+        // })
     }
 
    useEffect(()=>{
@@ -340,8 +337,8 @@ export default function Dashboard() {
                 <div className = "update_div">
                 {Object.values(state.info).map((current) => {
                     return (
-                        // <Note title={current.title} body={current.description} color={current.color} parentCallback={handleCallback} isOld={true}/>                        
-                        <p>{current.title},{current.description},{current.color}</p>          
+                        <Note title={current.title} body={current.description} color={current.color} parentCallback={handleCallback} isOld={true}/>                        
+                        // <p>{current.title},{current.description},{current.color}</p>          
                     )                   
                 })}
                 </div>
