@@ -3,6 +3,7 @@ import { TextInput } from '../InputField/inputFields'
 import { Link } from 'react-router-dom'
 import { Checkbox } from '@material-ui/core'
 import SimpleSnackbar from '../Snackbar/snackbarMessages'
+import fire from '../../services/fire'
 
 export default class loginForm extends React.Component {
     constructor(props) {
@@ -34,21 +35,18 @@ export default class loginForm extends React.Component {
             if (username.length === 0)
                 this.state.userName.current.setFieldEmpty("Username")
         } else {
-            let data = {
-                "email": username,
-                "password": password
-            }
-            // userServices.login(data).then((response) => {
-            //     console.log(response)
-            //     localStorage.setItem('userId',response.data.id)
-            //     this.setState({notification:"Account login successfully"})
-            //     setTimeout(() => {
-            //         this.props.history.push("/dashboard")
-            //     }, 3000)
-            // }).catch((error) => {
-            //     this.setState({notification:"Invalid username/password"})
-            //     console.log(error)
-            // })
+            
+            fire.auth().signInWithEmailAndPassword(username, password).then((response) => {
+                console.log(response)
+                SimpleSnackbar.handleClick("Signed in successfully")
+                setTimeout(() => {
+                    this.props.history.push("/dashboard")
+                }, 3000)
+            }).catch((error) => {
+                console.log(error)
+                this.setState({notification:"Invalid username/password"})
+                SimpleSnackbar.handleClick(error.message)
+            })
         }
     }
 
@@ -80,7 +78,7 @@ export default class loginForm extends React.Component {
                     <Link to="/registration" className="link"><div>Create a new account</div></Link>
                     <span><button onClick={this.checkInput}>Login</button></span>
                 </div>
-                <SimpleSnackbar notif={this.state.notification}/>
+                <SimpleSnackbar notif={this.state.notification} />
             </form>
 
         )
