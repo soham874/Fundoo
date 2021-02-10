@@ -26,7 +26,7 @@ export default function ResetForm(props) {
     //verifies password validity and resets
     const checkInput = (e) => {
         e.preventDefault();
-        let token = props.match.params.id
+        // let token = props.match.params.id
         let password = state.password.current.returnValue()
         let confirm = state.confirm.current.returnValue()
 
@@ -41,9 +41,9 @@ export default function ResetForm(props) {
             return
         }
 
-        let data = {
-            "newPassword": password
-        }
+        // let data = {
+        //     "newPassword": password
+        // }
 
         // userServices.resetPassword(data, token).then((response) => {
         //     console.log(response)

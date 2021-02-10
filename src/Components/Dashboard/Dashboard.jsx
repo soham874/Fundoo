@@ -183,7 +183,7 @@ let infoCollected
 export default function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
-    const [state, setState] = React.useState({
+    const [state] = React.useState({
         info : []
     });
     const handleDrawer = () => {

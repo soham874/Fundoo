@@ -4,6 +4,7 @@ import '../Login/login.css'
 import '../Registration/registration.css'
 import { Link } from 'react-router-dom'
 import SimpleSnackbar from '../Snackbar/snackbarMessages'
+import fire from '../../services/fire'
 
 export default class loginForm extends React.Component {
     constructor(props) {
@@ -24,21 +25,17 @@ export default class loginForm extends React.Component {
         if (username.length === 0)
             this.state.userName.current.setFieldEmpty("Email")
         else {
-            let data = {
-                "email": username
-            }
-
-            // userServices.resetEmail(data).then((response) => {
-            //     console.log(response)
-            //     this.state.userName.current.resetField()
-            //     SimpleSnackbar.handleClick("Reset link sent successfully")
-            //     setTimeout(() => {
-            //         this.props.history.push("/login")
-            //     }, 3000)
-            // }).catch((error) => {
-            //     this.state.userName.current.setCustomError("Email doesnot exist in database")
-            //     console.log(error)
-            // })
+            fire.auth().sendPasswordResetEmail(username).then(() => {
+                this.state.userName.current.resetField()
+                SimpleSnackbar.handleClick("Reset link sent successfully")
+                setTimeout(() => {
+                    this.props.history.push("/login")
+                }, 3000)
+            }).catch((error) => {
+                this.state.userName.current.setCustomError("Email doesnot exist in database")
+                SimpleSnackbar.handleClick(error.message)
+                console.log(error)
+            })
         }
     }
 
