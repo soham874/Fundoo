@@ -1,17 +1,17 @@
 import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 
-export default function SimpleSnackbar(props) {
+export default function SimpleSnackbar() {
   const [state, setState] = React.useState({
     message: '',
     open: false
   });
 
-  const handleClick = () => {
-    if (props.notif.length !== 0)
-      setState({ open: true, message: props.notif })
+  const handleClick = (notif) => {
+    if (notif.length !== 0)
+      setState({ open: true, message: notif })
   };
-
+ 
   SimpleSnackbar.handleClick = handleClick
 
   const handleClose = () => {

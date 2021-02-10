@@ -92,13 +92,12 @@ export default class registrationForm extends React.Component {
                 ).set(data)
             ref.then((response)=>{
                 console.log(response)
-                fire.auth().signOut()
-                setTimeout(() => {
-                    this.props.history.push("/login")
-                }, 3000)
             }).catch((error)=>{
                 console.log(error)
-            })         
+            }) 
+
+            fire.auth().signOut()
+            
         }).catch((error)=>{
             console.log(error)
             SimpleSnackbar.handleClick(error.message)
