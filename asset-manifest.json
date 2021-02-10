@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Fundoo/static/css/main.503de331.chunk.css",
+    "main.js": "/Fundoo/static/js/main.7c398c32.chunk.js",
+    "main.js.map": "/Fundoo/static/js/main.7c398c32.chunk.js.map",
+    "runtime-main.js": "/Fundoo/static/js/runtime-main.0e1503fc.js",
+    "runtime-main.js.map": "/Fundoo/static/js/runtime-main.0e1503fc.js.map",
+    "static/js/2.164f13ae.chunk.js": "/Fundoo/static/js/2.164f13ae.chunk.js",
+    "static/js/2.164f13ae.chunk.js.map": "/Fundoo/static/js/2.164f13ae.chunk.js.map",
+    "static/js/3.a199593f.chunk.js": "/Fundoo/static/js/3.a199593f.chunk.js",
+    "static/js/3.a199593f.chunk.js.map": "/Fundoo/static/js/3.a199593f.chunk.js.map",
+    "index.html": "/Fundoo/index.html",
+    "static/css/main.503de331.chunk.css.map": "/Fundoo/static/css/main.503de331.chunk.css.map",
+    "static/js/2.164f13ae.chunk.js.LICENSE.txt": "/Fundoo/static/js/2.164f13ae.chunk.js.LICENSE.txt",
+    "static/media/account.740e87aa.svg": "/Fundoo/static/media/account.740e87aa.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0e1503fc.js",
+    "static/js/2.164f13ae.chunk.js",
+    "static/css/main.503de331.chunk.css",
+    "static/js/main.7c398c32.chunk.js"
+  ]
+}
