@@ -38,6 +38,7 @@ export default class loginForm extends React.Component {
             
             fire.auth().signInWithEmailAndPassword(username, password).then((response) => {
                 console.log(response)
+                localStorage.setItem('userId',username)
                 SimpleSnackbar.handleClick("Signed in successfully")
                 setTimeout(() => {
                     this.props.history.push("/dashboard")

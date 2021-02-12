@@ -97,7 +97,9 @@ export default class registrationForm extends React.Component {
             }).catch((error) => {
                 console.log(error)
             })
-
+            fire.database().ref().child(
+                `userNotes/${inputValues[2].split("@")[0].split('.').join('|')}`
+            ).set({"notesNumber":0});
             fire.auth().signOut()
 
         }).catch((error) => {

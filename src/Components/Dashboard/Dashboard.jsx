@@ -31,6 +31,7 @@ import Badge from '@material-ui/core/Badge';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import Note from '../Note-Template/Note'
+import fire from '../../services/fire'
 
 const drawerWidth = 250;
 
